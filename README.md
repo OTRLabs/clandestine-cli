@@ -16,3 +16,6 @@ The base application is a [Rich](https://github.com/Textualize/rich) based `cli 
 I would like to add a `REST API` to this project. This would allow for easier integration with other tools & services. For this we will use [Litestar](https://litestar.dev/), formerly known as `Starlite`.
 
 Eventually I would also like to add a `Web UI` to this project. This would allow for easier use of the framework for those who are not comfortable with the command line, however this is a lower priority than the `REST API` & the `cli app`.
+
+In addition, I would like to add an `AI` based `exploit development` system, which uses a wide variety of information to develop modules for the framework. This is a long term goal & will require a lot of research & development, but if you are interested it can be monitored... i will move that to the organization repo later.
+
