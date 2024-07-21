@@ -9,8 +9,8 @@ from framework.application.configs.base import Config
 
 from framework.application.cli.strings.messages.en_US import *
 from framework.application.cli.console_manager import ConsoleManager
-if TYPE_CHECKING:
-    APP_SETTINGS: Config = Config.get_settings(self=Config)
+from framework.application import app
+
     
 
 def main() -> None:
@@ -20,6 +20,25 @@ def main() -> None:
     """
     CURRENT_CONSOLE: Console = ConsoleManager.APPLICATION_CONSOLE
     CURRENT_CONSOLE.print(f"{WELCOME_MESSAGE}", style="bold blue")
+    
+    ## load the settings
+    system_settings: app.SetupFramework = app.SetupFramework()
+    
+    CURRENT_CONSOLE.print(f"{LOADING_MESSAGE}", style="bold blue")
+    system_settings.setup_database()
+    CURRENT_CONSOLE.print(f"{DATABASE_LOADED_MESSAGE}", style="bold green")
+    
+    
+    system_settings.setup_cache()
+    CURRENT_CONSOLE.print(f"{CACHE_LOADED_MESSAGE}", style="bold green")
+    
+    system_settings.setup_task_queue()
+    CURRENT_CONSOLE.print(f"{TASK_QUEUE_LOADED_MESSAGE}", style="bold green")
+    
+    system_settings.setup_logging()
+    CURRENT_CONSOLE.print(f"{LOGGING_LOADED_MESSAGE}", style="bold green")
+    
+    
     
     CURRENT_CONSOLE.print(f"{STARTED_MESSAGE}", style="bold green")
     
