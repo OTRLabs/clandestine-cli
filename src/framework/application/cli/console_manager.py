@@ -15,7 +15,7 @@ class ConsoleManager:
         Start the Read-Eval-Print Loop
         """
         
-        console.print("Starting Framework REPL", style="bold green")
+        console.print(f"Starting {APP_NAME} REPL", style="bold green")
         console.print("Type 'help' for a list of commands", style="bold blue")
         console.print("Type 'exit' to exit the REPL", style="bold red")
         
@@ -28,10 +28,10 @@ class ConsoleManager:
             elif command.startswith("search"):
                 console.print("Search is not implemented yet", style="bold blue")
             elif command == "help":
-                console.print(REPL_HELP_MESSAGE)
+                console.print(f"{REPL_HELP_MESSAGE}:\n\nf{REPL_COMMANDS}")
             elif command == "options":
-                console.print("Options are not implemented yet", style="bold blue")
+                console.print(f"{OPTIONS_MESSAGE}:\n", style="bold blue")
             else:
-                console.print(f"Unknown command: {command}", style="bold red")
+                console.print(f"{UNKNOWN_COMMAND_IN_REPL_MESSAGE}: {command}", style="bold red")
                 
                 
