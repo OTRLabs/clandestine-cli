@@ -49,11 +49,13 @@ REPL_COMMANDS: list[dict] = [{
 }]
 
 ## REPL messages
+
 EXIT_REPL_MESSAGE: str = "[bold red]Exiting REPL![/bold red]\n\nThank you for using Framework"
 STARTING_REPL_MESSAGE: str = f"[bold blue]Starting {APP_NAME} REPL[/bold blue]"
 STARTED_REPL_MESSAGE: str = f"[bold blue]{APP_NAME} REPL started[/bold blue]"
+REPL_HELP_COMMAND: str = f"help: {REPL_COMMANDS}"
 SEARCHING_MODULES_MESSAGE: str = "[bold blue]Searching for modules...[/bold blue]"
-REPL_HELP_MESSAGE: str = f"[bold blue]Available commands:[/bold blue] [green]help[/green]\n\n[green]use [module_name][/green]\n\n[green]search[/green]" 
+SHORT_VERSION_REPL_HELP_MESSAGE: str = f"[bold blue]Available commands:[/bold blue] [green]help[/green]\n\n[green]use [module_name][/green]\n\n[green]search[/green]" 
 UNKNOWN_COMMAND_IN_REPL_MESSAGE:str = "[bold red]Unknown Command![/bold red] [blue]Type[/blue] '[green]help[/green]' [blue]for a list of commands[/blue]"
 MODULE_NOT_FOUND_MESSAGE: str = "[bold red]Module not found![/bold red]"
 MODULE_LOADED_MESSAGE: str = "[bold]Module loaded[/bold]"
