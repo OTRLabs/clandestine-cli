@@ -6,6 +6,8 @@ from rich.console import Console
 
 
 
+
+
 def main() -> None:
     
     console: Console = Console()
