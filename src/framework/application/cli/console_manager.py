@@ -15,15 +15,15 @@ class ConsoleManager:
         Start the Read-Eval-Print Loop
         """
         
-        console.print(f"Starting {APP_NAME} REPL", style="bold green")
-        console.print("Type 'help' for a list of commands", style="bold blue")
-        console.print("Type 'exit' to exit the REPL", style="bold red")
+        console.print(f"{STARTING_REPL_MESSAGE}")
+        console.print(f"{SHORT_VERSION_REPL_HELP_MESSAGE}")
+        console.print(f"{OFFER_EXIT_COMMAND_MESSAGE}")
         
         
         while True:
-            command: str = Prompt.ask("[blue bold]>>>[/blue bold] ")
+            command: str = Prompt.ask(PROMPT_MESSAGE)
             if command == "exit":
-                console.print("Exiting REPL", style="bold red")
+                console.print(EXITING_REPL_MESSAGE, style="bold red")
                 break
             elif command.startswith("search"):
                 console.print("Search is not implemented yet", style="bold blue")
