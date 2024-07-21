@@ -1,74 +1,79 @@
+# Offensive Security Kubernetes Framework
 
+## Introduction
 
-# Refactoring + reassessment of our approach
+The Offensive Security Kubernetes Framework is a Kubernetes distribution designed specifically for offensive security operations. This framework focuses on operational security and operator anonymity, providing a robust and isolated environment for conducting various security tasks.
 
-this system is going to shift it’s focus from being a metasploit ripoff, to being a Kubernetes distribution designed specifically for offensive security with a focus on operational security and operator anonymity 
+## Objective
 
-The system is based on kubeadm & designed to use virtual clusters in addition to virtual machines & containers
+The objective of this project is to create a highly configurable and isolated environment for offensive security operations, combining the capabilities of Kubernetes with the flexibility of virtual clusters and containers.
 
-We will be using Nix as our package manager within the containers. 
+## Components
 
-This allows us to achieve  an almost absurd level of isolation & configuration as well as create disposable environments that can be easily recreated.
+The framework leverages the following components:
 
-This allows us to obscure more persistent infrastructure like databases and other services that are not directly related to individual attacks.
+- **Debian**: Base operating system for all machines.
+- **Kubeadm**: Tool to set up the Kubernetes cluster.
+- **VCluster**: Inspired by [loft-sh/vcluster](https://github.com/loft-sh/vcluster), used for creating virtual clusters.
+- **Vagrant**: For managing virtual machines.
+- **Docker, Podman, and Containerd**: Container runtimes based on requirements.
+- **Nix**: Package manager for containers to ensure high levels of isolation and configurability.
 
+## Architecture
 
-For example, a C2 listener & a document storage system have different levels of Operational security considerations that need to be taken.
+The architecture is designed to provide a flexible and secure environment for offensive security operations.
 
+### Multiverse Theory: Dividing the Cluster into Virtual Clusters
 
-- Debian for the bare metal OS for all machines.
-- Kubeadm for the base of the k8s distribution. Bare metal as it gets for k8s.
-- VCluster at least will inspire the configurations of our machines if not be the outright choice we go with
-- Vagrant for virtual machines
-- Docker & podman, containerd runtimes available depending on the situation, and runtime requirementsm
-- Nix for the container package manager
+Think of each instance of Kali Linux as a planet. In this framework, we are creating a "multiverse" of environments, where the Kubernetes cluster acts as the multiverse.
 
-Basically the goal is to build something between Kali Linux and microk8s. 
+#### Kubeadm Cluster: The "Multiverse"
 
-Rather than providing you with a single OS environment with common configs Fock offensive security 
+The Kubernetes cluster is the foundation of the multiverse, providing the infrastructure to support multiple isolated environments.
 
-We are aiming to provide a rapidly evolving series of highly configurable environments for configuring and deploying common offensive infrastructure, centralizing the data and destroying unnecessary infrastructure when its job is done 
+#### Virtual Clusters
 
-## 2 "Multiverse" Theory: Dividing the cluster into virtual clusters 
+Virtual clusters are isolated environments within the main Kubernetes cluster, each serving specific purposes. They offer better multi-tenancy and isolation than regular namespaces.
 
-If you think of an instance of Kali as a planet we are aiming to create a “multiverse” of environments 
-
-actually I like that analogy so we are running with it 
-
-### 2.1 Kubeadm Cluster: The "Multiverse"
-the multiverse in this case is the Kubernetes cluster. 
-
-
-### 2.2 Virtual Clusters
-credit for concept inspiration: [loft-sh/vcluster](https://github.com/loft-sh/vcluster)
-
-The Kubernetes cluster contains X number of *universes* which are in this case `virtual Kubernetes clusters`.
-`Virtual Kubernetes Clusters` like `virtual machines` are fully functional `Kubernetes clusters` - Each vcluster runs inside a namespace of the underlying k8s cluster. It's cheaper than creating separate full-blown clusters and it offers better multi-tenancy and isolation than regular namespaces.
-These `virtual Kubernetes clusters` are isolated from each other and can be destroyed and recreated at will. They exist within the same cluster but are isolated from each other. 
-`Virtual clusters` tend to serve a more specific purpose within the main cluster, taking the operations of the system at large into consideration, rather than just running a bunch of instances or something.
-The next section will break down some information on the types of `virtual clusters` you can deploy within the `multiverse cluster`. 
-#### 2.2.1 Defining Virtual Cluster Types
-
-
-**Persistent Clusters**
-Clusters designed to be protected, isolated & maintained for long periods of time. think of it as [dom0 in qubes OS](https://www.qubes-os.org/doc/glossary/#dom0).
+**Persistent Clusters**: Designed to be protected, isolated, and maintained for long periods.
 - [Admin Cluster](docs/vclusters/Admin-Cluster.md)
 - [AI Cluster](docs/vclusters/AI-Cluster.md)
 - [Data Cluster](docs/vclusters/Data-Cluster.md)
 
-**Temporary / Rotated Periodically Clusters**
-length of time is irrelevant, these services (unless extremely necessary) should be destroyed and recreated periodically at set intervals. You should know ahead of time when you are going to destroy and recreate these clusters, to update your infrastructure and configurations to the latest versions & to match what your latest operation looks like. No wasted resources.
+**Temporary / Rotated Periodically Clusters**: These clusters are destroyed and recreated at set intervals to ensure up-to-date infrastructure and configurations.
 - [Barrier Cluster](docs/vclusters/Barrier-Cluster.md)
 - [DMZ Cluster](docs/vclusters/DMZ-Cluster.md)
 - [Jump Cluster](docs/vclusters/Jump-Cluster.md)
 - [UI Cluster](docs/vclusters/UI-Cluster.md)
 
-
-**Rapidly Disposable Clusters**
+**Rapidly Disposable Clusters**: These clusters are created and destroyed as needed for specific tasks.
 - [Phishing Cluster](docs/vclusters/Phishing-Cluster.md)
 - [Attack Cluster](docs/vclusters/Attack-Cluster.md)
 - [C2 Cluster](docs/vclusters/C2-Cluster.md)
 - [Network Recon Cluster](docs/vclusters/Recon-Cluster.md)
 - [Exploit Cluster](docs/vclusters/Exploit-Cluster.md)
+- [Monitoring Cluster](docs/vclusters/Monitoring-Cluster.md)
+
+## Installation & Setup
+
+### Prerequisites
+
+- Debian OS installed on all machines.
+- Kubeadm installed for setting up the Kubernetes cluster.
+- Vagrant for managing virtual machines.
+- Docker, Podman, or Containerd installed based on requirements.
+- Nix package manager installed within containers.
 
 
+
+### Example Use Cases
+
+- **Launching a Phishing Campaign**:
+  Set up the Phishing Cluster and deploy phishing infrastructure.
+
+- **Conducting Network Reconnaissance**:
+  Use the Network Recon Cluster to gather information on target networks.
+
+## Conclusion
+
+The Offensive Security Kubernetes Framework provides a versatile and secure environment for conducting offensive security operations. By leveraging Kubernetes, virtual clusters, and containers, this framework offers unparalleled flexibility and isolation. For more detailed instructions and advanced configurations, refer to the respective documentation links provided.
