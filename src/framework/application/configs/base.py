@@ -8,6 +8,7 @@ class Config:
     def __init__(self, settings: Settings) -> None:
         self.settings = settings
 
+    @staticmethod
     def get_settings(self) -> Settings:
         application_settings: Settings = Settings()
         return application_settings
