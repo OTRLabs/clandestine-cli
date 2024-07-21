@@ -16,7 +16,7 @@ class SecuritySettings:
     SECRET_KEY: str = os.getenv("SECRET_KEY", "secret")
 
 class DatabaseSettings:
-    SQLITE_DATABASE_URL: str = os.getenv("SQLITE_DATABASE_URL", "sqlite:///./database.db")
+    SURREALDB_HTTP_URL: str = os.getenv("SURREALDB_HTTP_URL", "http://localhost:8080")
     
 
 class Settings:
