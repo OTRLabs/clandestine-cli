@@ -38,5 +38,8 @@ async def main() -> None:
     
     ## load all the modules
 
+    ## Launch the REPL
+    await ConsoleManager.start_repl(console=CURRENT_CONSOLE)
+
 if __name__ == "__main__":
     asyncio.run(main())
