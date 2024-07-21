@@ -5,18 +5,27 @@ from rich.console import Console
 
 from rich.json import JSON
 
+from .commands.search import SearchCommand
+
 class CommandHandler:
     
-    async def execute_command(command, console) -> None:
+    async def execute_command(command, console: Console) -> None:
         """
-        Dummy function to simulate command execution.
-        In a real application, this would contain logic to process the command.
+        Command processing logic used to handle any command fed to the REPL
+        
+        parses the command and returns the appropriate response
+        
         """
         if command == "help":
             return "Available commands: help, exit, greet [name]"
-        elif command.startswith("greet"):
-            _, name = command.split()
-            return f"Hello, {name}!"
+        elif command.startswith("search"):
+            
+            console.print("Searching for: " + command[7:])
+            command = SearchCommand(command[7:])
+            results = command.execute()
+            console.print(JSON(results))
+            
+            return None 
         elif command == "exit":
             return None
         else:
