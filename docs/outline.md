@@ -64,7 +64,7 @@ Virtual clusters are isolated environments within the main Kubernetes cluster, e
 
 - Debian OS installed on all machines.
 - Kubeadm installed for setting up the Kubernetes cluster.
-- Vagrant for managing virtual machines.
+- Vagrant for managing virtual machines?
 - Docker, Podman, or Containerd installed based on requirements.
 - Nix package manager installed within containers.
 
