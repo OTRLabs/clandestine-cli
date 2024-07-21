@@ -8,6 +8,8 @@ authors = [
 dependencies = [
     "rich>=13.7.1",
     "python-dotenv>=1.0.1",
+    "sqlalchemy>=2.0.31",
+    "advanced-alchemy>=0.17.3",
 ]
 requires-python = "==3.12.*"
 readme = "README.md"
