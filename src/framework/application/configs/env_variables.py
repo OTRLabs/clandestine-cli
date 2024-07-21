@@ -17,7 +17,7 @@ class SecuritySettings:
 
 class DatabaseSettings:
     SURREALDB_HTTP_URL: str = os.getenv("SURREALDB_HTTP_URL", "http://localhost:8080")
-    
+    SURREALDB_WS_URL: str = os.getenv("SURREALDB_WS_URL", "ws://localhost:8080")
 
 class Settings:
     
