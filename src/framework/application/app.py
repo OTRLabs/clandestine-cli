@@ -7,8 +7,8 @@ from sqlalchemy.orm import sessionmaker
 import logging
 
 
-from .configs.base import Settings
 from .configs.base import Config
+
 class SetupFramework:
     '''
     Handles the setup of the Framework services
@@ -17,24 +17,20 @@ class SetupFramework:
     - task queue
     - logging
     - etc
-     
     '''
-    APP_SETTINGS: Config = Config.get_settings(self=Config)
     def __init__(self):
-        
-        return None 
-    
+        # Initialize APP_SETTINGS in the constructor
+        self.APP_SETTINGS = Config.get_settings(self=Config)
+
     async def setup_database(self) -> declarative_base:
         try:
-            # check if the sqlite database exists
-            # if not, create it
-            engine = create_engine(self.APP_SETTINGS.settings.database_settings.SQLITE_DATABASE_URL)
+            # Access the SQLITE_DATABASE_URL directly from APP_SETTINGS
+            engine = create_engine(self.APP_SETTINGS.database_settings.SQLITE_DATABASE_URL)
             Base = declarative_base(bind=engine)
-            print(f"Created database at {self.APP_SETTINGS.settings.database_settings.SQLITE_DATABASE_URL}")
+            print(f"Created database at {self.APP_SETTINGS.database_settings.SQLITE_DATABASE_URL}")
             return Base
         except Exception as e:
             logging.error(f"Error setting up database: {str(e)}")
-            raise
     async def setup_cache(self) -> None:
         
         pass
