@@ -35,6 +35,10 @@ The Kubernetes cluster is the foundation of the multiverse, providing the infras
 
 Virtual clusters are isolated environments within the main Kubernetes cluster, each serving specific purposes. They offer better multi-tenancy and isolation than regular namespaces.
 
+**Templates for Virtual Clusters**:
+- *Attack Cluster Template*
+
+
 **Persistent Clusters**: Designed to be protected, isolated, and maintained for long periods.
 - [Admin Cluster](docs/vclusters/Admin-Cluster.md)
 - [AI Cluster](docs/vclusters/AI-Cluster.md)
