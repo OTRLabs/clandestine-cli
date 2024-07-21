@@ -19,14 +19,15 @@ class SetupFramework:
     - etc
      
     '''
-    def __init__(self, app):
+    def __init__(self):
         APP_SETTINGS: Config = Config.get_settings(self=Config)
         return APP_SETTINGS 
     
-    async def setup_database(self) -> declarative_base:
+    async def setup_database(self, APP_SETTINGS) -> declarative_base:
         # check if the sqlite database exists
         # if not, create it
-        engine = create_engine(APP_SETTINGS.SQLITE_DATABASE_URL)
+        
+        engine = create_engine(APP_SETTINGS.base_settings.DATABASE_URL)
         Base = declarative_base(bind=engine)
         return Base
     
@@ -38,4 +39,4 @@ class SetupFramework:
     
     async def setup_logging(self):
         # read the logging level from the settings config
-        
+        pass
