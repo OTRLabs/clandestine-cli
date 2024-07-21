@@ -10,6 +10,7 @@ dependencies = [
     "python-dotenv>=1.0.1",
     "sqlalchemy>=2.0.31",
     "advanced-alchemy>=0.17.3",
+    "pydantic>=2.8.2",
 ]
 requires-python = "==3.12.*"
 readme = "README.md"
