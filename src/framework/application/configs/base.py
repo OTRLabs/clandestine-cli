@@ -9,4 +9,5 @@ class Config:
         self.settings = settings
 
     def get_settings(self) -> Settings:
-        return self.settings
+        application_settings: Settings = Settings()
+        return application_settings
