@@ -7,6 +7,8 @@ from rich.console import Console
 
 from .application.configs.base import Config
 
+from .application.cli.strings.messages.en_US import Messages
+
 if TYPE_CHECKING:
     APP_SETTINGS: Config = Config.get_settings()
 
@@ -14,8 +16,9 @@ if TYPE_CHECKING:
 def main() -> None:
     
     console: Console = Console()
-    console.print(f"Starting up Framework v{APP_SETTINGS.settings.base_settings.VERSION}", style="bold green")
+    console.print(f"{Messages.STARTED_MESSAGE}", style="bold green")
     
+    ## load all the modules
     
 if __name__ == "__main__":
     main()
