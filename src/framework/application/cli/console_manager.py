@@ -3,6 +3,8 @@ from __future__ import annotations
 from typing import List
 from rich.console import Console
 from rich.prompt import Prompt
+from rich import inspect
+
 class ConsoleManager:
     APPLICATION_CONSOLE: Console = Console()
     
