@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 def main() -> None:
     """
     The main function of the app.
-        
+    Launches the application and starts the CLI.
     """
     CURRENT_CONSOLE: Console = ConsoleManager.APPLICATION_CONSOLE
     CURRENT_CONSOLE.print(f"{WELCOME_MESSAGE}", style="bold blue")
