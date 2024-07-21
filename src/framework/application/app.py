@@ -21,7 +21,7 @@ class SetupFramework:
     '''
     def __init__(self):
         APP_SETTINGS: Config = Config.get_settings(self=Config)
-        return APP_SETTINGS 
+        return None 
     
     async def setup_database(self, APP_SETTINGS) -> declarative_base:
         # check if the sqlite database exists
