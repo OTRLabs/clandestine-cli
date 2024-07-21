@@ -1,25 +1,24 @@
 from __future__ import annotations
 
-from typing import List
+from typing import List, Dict
 from rich.console import Console
 from rich.prompt import Prompt
 from .strings.messages.en_US import *
-from rich import inspect
 from .command_handler import CommandHandler
+from rich.json import JSON
+
+
 class ConsoleManager:
     APPLICATION_CONSOLE: Console = Console()
-    
 
-    async def start_repl(console) -> None:
+    async def start_repl(console: Console) -> None:
         """
         Start the Read-Eval-Print Loop
         """
-        
         console.print(f"{STARTING_REPL_MESSAGE}")
         console.print(f"{SHORT_VERSION_REPL_HELP_MESSAGE}")
         console.print(f"{OFFER_EXIT_COMMAND_MESSAGE}")
-        
-        
+
         while True:
             command: str = Prompt.ask(PROMPT_MESSAGE)
             if command == "exit":
@@ -28,10 +27,12 @@ class ConsoleManager:
             elif command.startswith("search"):
                 console.print("Search is not implemented yet", style="bold blue")
             elif command == "help":
-                console.print(f"{REPL_HELP_MESSAGE}:\n\nf{REPL_COMMANDS}")
+                commands = await CommandHandler.execute_command("help", console)
+                if isinstance(commands, dict):
+                    console.print_json(data=commands)
+                else:
+                    console.print(f"{commands}")
             elif command == "options":
                 console.print(f"{OPTIONS_MESSAGE}:\n", style="bold blue")
             else:
                 console.print(f"{UNKNOWN_COMMAND_IN_REPL_MESSAGE}: {command}", style="bold red")
-                
-                

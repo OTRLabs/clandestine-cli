@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import List
 from rich.console import Console
 
-
+from rich.json import JSON
 
 class CommandHandler:
     
