@@ -6,6 +6,7 @@ from framework.application.cli.strings.messages.en_US import *
 from framework.application.cli.console_manager import ConsoleManager
 from framework.application import app
 import asyncio
+from rich.json import JSON
 
 async def main() -> None:
     """
