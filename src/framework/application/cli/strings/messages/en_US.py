@@ -16,3 +16,9 @@ DATABASE_LOADED_MESSAGE: str = "Database loaded"
 CACHE_LOADED_MESSAGE: str = "Cache loaded"
 TASK_QUEUE_LOADED_MESSAGE: str = "Task queue loaded"
 LOGGING_LOADED_MESSAGE: str = "Logging loaded"
+
+## REPL messages
+EXIT_REPL_MESSAGE: str = "Exiting REPL, Thank you for using Framework"
+SEARCHING_MODULES_MESSAGE: str = "Searching for modules..."
+REPL_HELP_MESSAGE: str = f"[bold blue]Available commands:[/bold blue] [green]help[/green]\n\n[green]use [module_name][/green]\n\n[green]search[/green]" 
+UNKNOWN_COMMAND_IN_REPL_MESSAGE:str = "Type 'help' for a list of commands"
