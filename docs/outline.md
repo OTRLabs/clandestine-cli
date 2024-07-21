@@ -14,6 +14,7 @@ The framework leverages the following components:
 
 - **Debian**: Base operating system for all machines.
 - **Kubeadm**: Tool to set up the Kubernetes cluster.
+- **SurrealDB**: Handles system wide information & knowledge management. 
 - **VCluster**: Inspired by [loft-sh/vcluster](https://github.com/loft-sh/vcluster), used for creating virtual clusters.
 - **Vagrant**: For managing virtual machines.
 - **Docker, Podman, and Containerd**: Container runtimes based on requirements.
@@ -21,11 +22,16 @@ The framework leverages the following components:
 
 ## Architecture
 
-The architecture is designed to provide a flexible and secure environment for offensive security operations.
+The architecture is designed to provide a flexible and secure environment for offensive security operations. The design is based off of `Kubeadm` as it looks like the `K8s` distribution with the least amount of preset configs, & general bloat. Our goal is to provide a system that is as close to a clean slate as possible, allowing you to build your multiverse of environments as you see fit.
+
+> Do you want to use a virtual machine for that service or will containers do? Which container runtime do you want to use? Up to you! 
+>
 
 ### Multiverse Theory: Dividing the Cluster into Virtual Clusters
 
 Think of each instance of Kali Linux as a planet. In this framework, we are creating a "multiverse" of environments, where the Kubernetes cluster acts as the multiverse.
+
+### The "Multiverse" Architecture
 
 #### Kubeadm Cluster: The "Multiverse"
 
