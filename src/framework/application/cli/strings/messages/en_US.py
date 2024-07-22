@@ -103,3 +103,28 @@ SURREAL_DB_CONNECTION_NOT_USING_SSL_MESSAGE: str = "[bold]SurrealDB connection n
 SURREAL_DB_ERROR_WITH_SSL_MESSAGE: str = "[bold red]Error with SSL[/bold red]"
 SURREAL_DB_HTTP_CONNECTION_NOT_USING_SSL_MESSAGE: str = "[bold]SurrealDB HTTP connection not using SSL[/bold]"
 SURREAL_DB_IS_NOT_USING_SSL_FOR_HTTP_MESSAGE: str = "[bold]SurrealDB is not using SSL for HTTP[/bold]"
+
+
+LOGGING_ERROR_RICH_CONFIG: dict = {
+    "error": "red",
+    "critical": "red bold",
+    "warning": "yellow",
+    "service_failure": "yellow bold",
+    "info": "blue",
+    "debug": "green",
+    "critical": "red",
+    "fatal": "red",
+    "success": "green",
+    "failure": "red"
+}
+
+## SurrealDB Logging Messages
+LOGGING_INITIALIZED_MESSAGE: str = f"[]Logging initialized[/]"
+LOGGING_ERROR_MESSAGE: str = "[bold red]Logging error[/bold red]"
+LOGGING_WARNING_MESSAGE: str = "[bold yellow]Logging warning[/bold yellow]"
+LOGGING_INFO_MESSAGE: str = "[bold]Logging info[/bold]"
+LOGGING_DEBUG_MESSAGE: str = "[bold]Logging debug[/bold]"
+LOGGING_CRITICAL_MESSAGE: str = "[bold red]Logging critical[/bold red]"
+LOGGING_FATAL_MESSAGE: str = "[bold red]Logging fatal[/bold red]"
+LOGGING_SUCCESS_MESSAGE: str = "[bold]Logging success[/bold]"
+LOGGING_FAILURE_MESSAGE: str = "[bold red]Logging failure[/bold red]"
