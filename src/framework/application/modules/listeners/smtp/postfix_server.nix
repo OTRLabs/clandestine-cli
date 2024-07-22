@@ -1,6 +1,21 @@
 { config, pkgs, ... }:
 
 let
+  # Define the packages you want to install
+  packages = [
+    pkgs.buildPackages.c
+    pkgs.buildPackages.c++
+    pkgs.zig
+    pkgs.cmake
+    pkgs.proxychains-ng
+    pkgs.lokinet
+    pkgs.tor
+    pkgs.nym
+    pkgs.libtoxcore
+    pkgs.libtoxav
+    pkgs.libtoxdns
+  ];
+
   torConfig = {
     HiddenServiceDir = "/var/lib/tor/postfix";
     HiddenServicePort = "127.0.0.1:25";
