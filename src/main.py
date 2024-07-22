@@ -20,14 +20,14 @@ async def main() -> None:
     system_settings: app.SetupFramework = app.SetupFramework()
     
     CURRENT_CONSOLE.print(f"{LOADING_MESSAGE}", style="bold blue")
-    await system_settings.setup_database()
+    await system_settings.setup_database(console=CURRENT_CONSOLE)
     CURRENT_CONSOLE.print(f"{DATABASE_LOADED_MESSAGE}", style="bold green")
     
     
     await system_settings.setup_cache()
     CURRENT_CONSOLE.print(f"{CACHE_LOADED_MESSAGE}", style="bold green")
     
-    await system_settings.setup_task_queue()
+    await system_settings.setup_task_queue(console=CURRENT_CONSOLE)
     CURRENT_CONSOLE.print(f"{TASK_QUEUE_LOADED_MESSAGE}", style="bold green")
     
     await system_settings.setup_logging()
