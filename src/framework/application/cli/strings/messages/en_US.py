@@ -13,7 +13,7 @@ app_settings_instance = Config.get_settings(self=Config)
 APP_NAME: str = "K8Sploit Framework"
 
 
-STARTING_UP_MESSAGE: str = f"[{SUCCESS_CONFIG}]Starting up Framework v{app_settings_instance.base_settings.VERSION}[/{SUCCESS_CONFIG}]"
+STARTING_UP_MESSAGE: str = f"[{STANDARD_RICH_MESSAGING_CONFIG}]Starting up Framework v{app_settings_instance.base_settings.VERSION}[/{STANDARD_RICH_MESSAGING_CONFIG}]"
 STARTED_MESSAGE: str = f"[{SUCCESS_CONFIG}]Started Framework v{app_settings_instance.base_settings.VERSION}[/{SUCCESS_CONFIG}]"
 WELCOME_MESSAGE: str = f"[{STANDARD_RICH_MESSAGING_CONFIG}]Welcome to Framework v{app_settings_instance.base_settings.VERSION}[/{STANDARD_RICH_MESSAGING_CONFIG}]"
 LOADING_MESSAGE: str = f"[{INFO_CONFIG}]Loading Framework services...[/{INFO_CONFIG}]"
