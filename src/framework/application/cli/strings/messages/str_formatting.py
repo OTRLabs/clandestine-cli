@@ -12,6 +12,6 @@ app_settings_instance = Config.get_settings(self=Config)
 
 STANDARD_RICH_MESSAGING_STYLE: str = "italic"
 STANDARD_RICH_MESSAGING_COLOR: str = "blue"
-# set up the configuration for the "baseline" neutral basic messages
+# set up the configuration for the "baseline" neutral basic cli messages using BBcode
 STANDARD_RICH_MESSAGING_CONFIG: str = f"{STANDARD_RICH_MESSAGING_COLOR}{STANDARD_RICH_MESSAGING_STYLE}"
 
