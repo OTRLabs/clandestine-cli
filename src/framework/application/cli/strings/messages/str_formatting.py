@@ -9,3 +9,9 @@ from typing import List
     
 # Assuming Config.get_settings is a static or class method returning an instance of Settings.
 app_settings_instance = Config.get_settings(self=Config)
+
+STANDARD_RICH_MESSAGING_STYLE: str = "italic"
+STANDARD_RICH_MESSAGING_COLOR: str = "blue"
+# set up the configuration for the "baseline" neutral basic messages
+STANDARD_RICH_MESSAGING_CONFIG: str = f"{STANDARD_RICH_MESSAGING_COLOR}{STANDARD_RICH_MESSAGING_STYLE}"
+
