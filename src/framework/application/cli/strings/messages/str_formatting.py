@@ -17,13 +17,14 @@ STANDARD_RICH_MESSAGING_CONFIG: str = f"{STANDARD_RICH_MESSAGING_COLOR}{STANDARD
 
 
 ERROR_RICH_CONFIG: dict = {
-    "error": "red",
+    "error": "red bold",
     "critical": "red3 bold",
-    "warning": "yellow",
+    "update": "orchid italic",
+    "warning": "yellow italic",
     "service_failure": "yellow bold",
-    "info": "blue",
-    "debug": "green",
+    "info": "dark_slate_gray3 italic",
+    "debug": "dark_slate_green italic",
     "fatal": "red italic bold",
-    "success": "green",
-    "failure": "red"
+    "success": "green bold",
+    "failure": "dark_red"
 }
