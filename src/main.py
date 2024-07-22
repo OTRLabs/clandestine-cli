@@ -14,12 +14,12 @@ async def main() -> None:
     Launches the application and starts the CLI.
     """
     CURRENT_CONSOLE: Console = ConsoleManager.APPLICATION_CONSOLE
-    CURRENT_CONSOLE.print(f"{WELCOME_MESSAGE}", style="bold blue")
+    CURRENT_CONSOLE.print(f"{WELCOME_MESSAGE}")
     
     ## load the settings
     system_settings: app.SetupFramework = app.SetupFramework()
     
-    CURRENT_CONSOLE.print(f"{LOADING_MESSAGE}", style="bold blue")
+    CURRENT_CONSOLE.print(f"{LOADING_MESSAGE}")
     await system_settings.setup_database(console=CURRENT_CONSOLE)
     CURRENT_CONSOLE.print(f"{DATABASE_LOADED_MESSAGE}")
     
