@@ -35,7 +35,7 @@ class SetupFramework:
     
     
     async def setup_caching(self, console: Console) -> None:
-        console.print("Setting up caching using Redis")
+        console.print(f"Setting up caching using Redis")
         
         return None 
     async def setup_module_services(self, console: Console) -> None:
