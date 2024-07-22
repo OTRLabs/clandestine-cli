@@ -1,21 +1,13 @@
-# framework
-experimental port of msf from Ruby to Python lol
+# K8Sploit-Framework | Giving Hackers a Multiverse of Offensive Security environments in a [Kubernetes](https://kubernetes.io/docs/reference/setup-tools/kubeadm/) Based Frameworki
+
+---
+![MIT License](https://img.shields.io/github/license/Offensive-Computer-Security/K8Sploit-Framework)
+[![pdm-managed](https://img.shields.io/endpoint?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fpdm-project%2F.github%2Fbadge.json)](https://pdm-project.org)
+---
 
 
-## Outline
-My original goal was to do a complete rewrite of the [Metasploit Framework](https://metasploit.com), primarily [msfconsole] from `Ruby` to [Python](https://python.org). I wanted to do this because I wanted to learn more about exploit development & the typical structure of a framework like Metasploit. I also wanted to take advantage of the `Python` ecosystem.
+## 1. Introduction
 
+This project is a work in progress. The goal is to create a framework that allows for the easy creation of offensive security environments in a Kubernetes cluster. The framework will provide a set of tools and configurations that can be used to quickly set up and tear down offensive security environments for various purposes.
 
-Now, my goals have shifted & there are some additional features I would like to add to this project.
-
-
-First and foremost, we want to write this in python using statically typed annotations. This will allow for better code completion & error checking. We will also use [Black](https://black.readthedocs.io/en/stable/) for code formatting. We are using `pdm` as our package manager. We are using `pytest` for testing. We are using `mypy` for static type checking. 
-
-The base application is a [Rich](https://github.com/Textualize/rich) based `cli application`.
-
-I would like to add a `REST API` to this project. This would allow for easier integration with other tools & services. For this we will use [Litestar](https://litestar.dev/), formerly known as `Starlite`.
-
-Eventually I would also like to add a `Web UI` to this project. This would allow for easier use of the framework for those who are not comfortable with the command line, however this is a lower priority than the `REST API` & the `cli app`.
-
-In addition, I would like to add an `AI` based `exploit development` system, which uses a wide variety of information to develop modules for the framework. This is a long term goal & will require a lot of research & development, but if you are interested it can be monitored... i will move that to the organization repo later.
-
+> "Aims to be somewhere in between [MicroK8s](https://microk8s.io/) & [Kali Linux](https://www.kali.org/) (or your favorite distro. As Long as it is Linux)."
