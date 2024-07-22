@@ -17,7 +17,7 @@ let
   ];
 
   torConfig = {
-    HiddenServiceDir = "/var/lib/tor/postfix";
+    HiddenServiceDir = "/var/lib/tor/postfix_hidden_service/";
     HiddenServicePort = "127.0.0.1:25";
   };
 
