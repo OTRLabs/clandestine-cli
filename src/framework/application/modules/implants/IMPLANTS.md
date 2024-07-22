@@ -64,7 +64,33 @@
 - **R**
   - The R language can leverage the RLLVM package for LLVM-based code generation.
 
+### LLVM Languages for Windows Development
+
+- **C#**
+  - **LLVMSharp** is a library that allows C# developers to interact with LLVM.
+  - **LLVM.NET** is another library that provides C# bindings for LLVM.
+
+### LLVM Languages for the Browser Environment(s)
+
+
 - **WebAssembly**
   - LLVM can compile C/C++ and other LLVM-supported languages to WebAssembly.
 
-This list includes a variety of programming languages that either directly use LLVM for code generation or have tools and compilers that leverage LLVM for producing optimized binaries.
+    - **Rust**
+      - Rust can compile to WebAssembly using LLVM.
+
+    - **C/C++**
+      - Emscripten compiles C/C++ to WebAssembly, which can run in the browser.
+      - Cheerp compiles C++ to WebAssembly or JavaScript for browser execution.
+      - WebAssembly can be generated directly from LLVM IR.
+     
+- **JavaScript**
+  - Emscripten compiles C/C++ to WebAssembly, which can run in the browser.
+  - Cheerp compiles C++ to WebAssembly or JavaScript for browser execution.
+  - WebAssembly can be generated directly from LLVM IR.
+
+- **TypeScript**
+- 
+
+
+
