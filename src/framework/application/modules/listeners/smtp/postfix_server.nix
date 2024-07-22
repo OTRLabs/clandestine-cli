@@ -10,9 +10,7 @@ let
     pkgs.proxychains-ng
     pkgs.lokinet
     pkgs.tor
-    pkgs.nym
-    pkgs.libtoxcore
-    pkgs.libtoxav
+    pkgs.postfix
     pkgs.libtoxdns
   ];
 
