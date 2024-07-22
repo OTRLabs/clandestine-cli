@@ -23,7 +23,7 @@ ERROR_RICH_CONFIG: dict = {
     "service_failure": "yellow bold",
     "info": "blue",
     "debug": "green",
-    "fatal": "red",
+    "fatal": "red italic bold",
     "success": "green",
     "failure": "red"
 }
