@@ -3,9 +3,8 @@ from __future__ import annotations
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-
+from rich.console import Console
 import logging
-
 
 from .configs.base import Config
 
@@ -31,8 +30,13 @@ class SetupFramework:
             return Base
         except Exception as e:
             logging.error(f"Error setting up database: {str(e)}")
-    async def setup_cache(self) -> None:
+    
+    
+    async def setup_caching(self, console: Console) -> None:
+        console.print("Setting up caching using Redis")
         
+        return None 
+    async def setup_module_services(self, console: Console) -> None:
         pass
     
     async def setup_task_queue(self) -> None:
