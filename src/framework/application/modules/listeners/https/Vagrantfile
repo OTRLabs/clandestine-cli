@@ -1,0 +1,28 @@
+Vagrant.configure("2") do |config|
+    config.vm.box = "debian/buster64"
+    
+    config.vm.provider "virtualbox" do |vb|
+        vb.memory = "2048"
+        vb.cpus = "2"
+    end
+    
+    config.vm.provision "shell", inline: <<-SHELL
+        # Update the system
+        apt-get update
+        apt-get upgrade -y
+        
+        # Install security tools
+        apt-get install -y fail2ban ufw
+        
+        # Configure firewall
+        ufw default deny incoming
+        ufw default allow outgoing
+        ufw allow ssh
+        ufw enable
+        
+        # Configure fail2ban
+        cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+        sed -i 's/#ignoreip = 127.0.0.1\/8 ::1/ignoreip = 127.0.0.1\/8 ::1 your_ip_address/' /etc/fail2ban/jail.local
+        systemctl restart fail2ban
+    SHELL
+end
