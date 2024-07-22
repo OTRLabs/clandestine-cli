@@ -47,7 +47,7 @@ class DatabaseSettings:
     SURREAL_DB_PASSWORD: str = os.getenv("SURREAL_DB_PASSWORD")
     
     # HTTP API Access to SurrealDB
-    SURREALDB_HTTP_URL: str = os.getenv("SURREALDB_HTTP_URL", f"http://{}:8080")
+    SURREALDB_HTTP_URL: str = os.getenv("SURREALDB_HTTP_URL")
     SURREALDB_HTTP_SSL: bool = os.getenv("SURREALDB_HTTP_SSL", False)
     SURREALDB_HTTP_CERT: str = os.getenv("SURREALDB_HTTP_CERT", None)
     SURREALDB_HTTP_KEY: str = os.getenv("SURREALDB_HTTP_KEY", None)
