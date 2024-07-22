@@ -46,6 +46,9 @@ class SetupFramework:
         
         return None    
     
-    async def setup_logging(self) -> None:
+    async def setup_logging(self, console: Console) -> None:
         # read the logging level from the settings config
-        pass
+        console.print("Setting up logging")
+        return None
+    
+     
