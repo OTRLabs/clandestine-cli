@@ -15,3 +15,16 @@ STANDARD_RICH_MESSAGING_COLOR: str = "blue"
 # set up the configuration for the "baseline" neutral basic cli messages using BBcode
 STANDARD_RICH_MESSAGING_CONFIG: str = f"{STANDARD_RICH_MESSAGING_COLOR}{STANDARD_RICH_MESSAGING_STYLE}"
 
+
+ERROR_RICH_CONFIG: dict = {
+    "error": "red",
+    "critical": "red bold",
+    "warning": "yellow",
+    "service_failure": "yellow bold",
+    "info": "blue",
+    "debug": "green",
+    "critical": "red",
+    "fatal": "red",
+    "success": "green",
+    "failure": "red"
+}
