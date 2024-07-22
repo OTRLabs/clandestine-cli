@@ -10,7 +10,7 @@ app_settings_instance = Config.get_settings(self=Config)
 
 # Basic App Config
 
-APP_NAME: str = "Framework"
+APP_NAME: str = "K8Sploit Framework"
 
 
 STARTING_UP_MESSAGE: str = f"[bold]Starting up Framework v{app_settings_instance.base_settings.VERSION}[/bold]"
