@@ -39,8 +39,9 @@ class SetupFramework:
         
         return None 
     async def setup_module_services(self, console: Console) -> None:
-        pass
-    
+        console.print("Setting up module services")
+        
+        return None
     async def setup_task_queue(self, console: Console) -> None:
         console.print("Setting up task queue using SAQ")
         
