@@ -1,0 +1,100 @@
+<!-- PRETEXT OVERVIEW:
+    Credential Capture.
+    
+    ****This is a 2-part pretext which comes with a redirect page suggestion.****
+    {{ evilurl }} redirects to -> login portal redicrects to -> incident page
+    
+    {{ firstname }}: Target first name.
+    {{ incidentdate }}: Date on which the "incident" happened.
+    {{ organization }}: Target organization.
+    {{ evilurl }}: URL to login portal.
+    {{ hremployee }}: Name of HR employee.
+    {{ evildomain }}: Spoofed domain.
+    {{ signature }}: Append or replace with internal signature if acquired.
+    <!-- PRETEXT OVERVIEW:
+        Credential Capture.
+        
+        ****This is a 2-part pretext which comes with a redirect page suggestion.****
+        {{ evilurl }} redirects to -> login portal redicrects to -> incident page
+        
+        {{ firstname }}: Target first name.
+        {{ incidentdate }}: Date on which the "incident" happened.
+        {{ organization }}: Target organization.
+        {{ evilurl }}: URL to login portal.
+        {{ hremployee }}: Name of HR employee.
+        {{ evildomain }}: Spoofed domain.
+        {{ signature }}: Append or replace with internal signature if acquired.
+        <!-- INCIDENT PAGE:
+        Make sure to copy the look and feel of the {{ organization }} with some similar headers, logo's. custom CSS, etc.
+        
+        {{ branding }}: Aforementioned look and feel headers, etc.
+        {{ incidentdate }}: Date on which the "incident" happened.
+        {{ location }}: Location of "incident". Can be a break room, lobby, whatever place fits for the target.
+        {{ time }}: Time at which the 'incident' took place.
+        {{ organization }}: Target organization.
+        {{ spoofedemail }}: A spoofed e-mail which goes back to something like hr@fakedomain.com.
+        -->
+        <br>
+        <br>
+        <br>
+        <br>
+        ------------------------START OF INCIDENT PAGE------------------------
+        <br>
+        <br>
+        {{ branding }}
+        <br>
+        <br>
+        Due to privacy regulations, employees involved in the incident will hereby be referred to as 'Employee A' and 'Employee B'.
+        <br>
+        <br>
+        Incident description:
+        <br>
+        <br>
+        On {{ incidentdate }}, in {{ location }} and at {{ time }}, Employee A made a derogatory comment about a charity or organization to Employee B who is a member of said charity or organization. Employee B then left the room.
+        <br>
+        <br>
+        <form action="/action_page.php" method="get">
+          <input type="checkbox" name="vehicle" value="Bike"> I was not witness to this incident.<br>
+          <input type="checkbox" name="vehicle" value="Car" checked="checked"> I was witness to this incident.<br>
+          <input type="submit" value="Submit">
+        </form>
+        <br>
+        <br>
+        &copy; {{ current_year }} {{ organization }} Human Resources Incident Response Form. For questions, contact {{ spoofedemail }}.
+    <!-- INCIDENT PAGE:
+    Make sure to copy the look and feel of the $organization with some similar headers, logo's. custom CSS, etc.
+    
+    $branding: Aforementioned look and feel headers, etc.
+    $incidentdate: Date on which the "incident" happened.
+    $location: Location of "incident". Can be a break room, lobby, whatever place fits for the target.
+    $time: Time at which the 'incident' took place.
+    $organization: Target organization.
+    $spoofedemail: A spoofed e-mail which goes back to something like hr@fakedomain.com.
+    -->
+    <br>
+    <br>
+    <br>
+    <br>
+    ------------------------START OF INCIDENT PAGE------------------------
+    <br>
+    <br>
+    $branding
+    <br>
+    <br>
+    Due to privacy regulations, employees involved in the incident will hereby be referred to as 'Employee A' and 'Employee B'.
+    <br>
+    <br>
+    Incident description:
+    <br>
+    <br>
+    On $incidentdate, in $location and at $time, Employee A made a derogatory comment about a charity or organization to Employee B who is a member of said charity or organization. Employee B then left the room.
+    <br>
+    <br>
+    <form action="/action_page.php" method="get">
+      <input type="checkbox" name="vehicle" value="Bike"> I was not witness to this incident.<br>
+      <input type="checkbox" name="vehicle" value="Car" checked="checked"> I was witness to this incident.<br>
+      <input type="submit" value="Submit">
+    </form>
+    <br>
+    <br>
+    &copy; {{ current_year }} $organization Human Resources Incident Response Form. For questions, contact $spoofedemail.
