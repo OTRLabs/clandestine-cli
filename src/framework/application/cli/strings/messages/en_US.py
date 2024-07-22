@@ -13,14 +13,14 @@ app_settings_instance = Config.get_settings(self=Config)
 APP_NAME: str = "K8Sploit Framework"
 
 
-STARTING_UP_MESSAGE: str = f"[bold]Starting up Framework v{app_settings_instance.base_settings.VERSION}[/bold]"
-STARTED_MESSAGE: str = f"[bold]Started Framework v{app_settings_instance.base_settings.VERSION}[/bold]"
-WELCOME_MESSAGE: str = f"[bold]Welcome to Framework v{app_settings_instance.base_settings.VERSION}[/bold]"
-LOADING_MESSAGE: str = "[bold]Loading Framework services...[/bold]"
-DATABASE_LOADED_MESSAGE: str = "[bold]Database loaded[/bold]"
-CACHE_LOADED_MESSAGE: str = "[bold]Cache loaded[/bold]"
-TASK_QUEUE_LOADED_MESSAGE: str = "[bold]Task queue loaded[/bold]"
-LOGGING_LOADED_MESSAGE: str = "[bold]Logging loaded[/bold]"
+STARTING_UP_MESSAGE: str = f"[{SUCCESS_CONFIG}]Starting up Framework v{app_settings_instance.base_settings.VERSION}[/{SUCCESS_CONFIG}]"
+STARTED_MESSAGE: str = f"[{SUCCESS_CONFIG}]Started Framework v{app_settings_instance.base_settings.VERSION}[/{SUCCESS_CONFIG}]"
+WELCOME_MESSAGE: str = f"[{STANDARD_RICH_MESSAGING_CONFIG}]Welcome to Framework v{app_settings_instance.base_settings.VERSION}[/{STANDARD_RICH_MESSAGING_CONFIG}]"
+LOADING_MESSAGE: str = f"[{INFO_CONFIG}]Loading Framework services...[/{INFO_CONFIG}]"
+DATABASE_LOADED_MESSAGE: str = f"[{INFO_CONFIG}]Database loaded[/{INFO_CONFIG}]"
+CACHE_LOADED_MESSAGE: str = f"[{SUCCESS_CONFIG}]Cache loaded[/{SUCCESS_CONFIG}]"
+TASK_QUEUE_LOADED_MESSAGE: str = f"[{SUCCESS_CONFIG}]Task queue loaded[/{SUCCESS_CONFIG}]"
+LOGGING_LOADED_MESSAGE: str = f"[{SUCCESS_CONFIG}]Logging loaded[/{SUCCESS_CONFIG}]"
 
 ## Console messages
 
@@ -81,6 +81,12 @@ MODULE_RELOADED_MESSAGE: str = "[bold]Module reloaded[/bold]"
 MODULE_USAGE_MESSAGE: str = "[bold]Usage: use [module_name][/bold]"
 MODULE_ALREADY_LOADED_MESSAGE: str = "[bold]Module already loaded[/bold]"
 OPTIONS_MESSAGE: str = "[bold]Options[/bold]"
+
+### Social Engineering messages
+
+#### Phishing messages
+PHISHING_MODULES: str = "[bold]Phishing Modules[/bold]"
+
 
 
 # Database messages
