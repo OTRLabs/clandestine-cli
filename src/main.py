@@ -24,13 +24,13 @@ async def main() -> None:
     CURRENT_CONSOLE.print(f"{DATABASE_LOADED_MESSAGE}", style="bold green")
     
     
-    await system_settings.setup_cache()
+    await system_settings.setup_caching(console=CURRENT_CONSOLE)
     CURRENT_CONSOLE.print(f"{CACHE_LOADED_MESSAGE}", style="bold green")
     
     await system_settings.setup_task_queue(console=CURRENT_CONSOLE)
     CURRENT_CONSOLE.print(f"{TASK_QUEUE_LOADED_MESSAGE}", style="bold green")
     
-    await system_settings.setup_logging()
+    await system_settings.setup_logging(console=CURRENT_CONSOLE)
     CURRENT_CONSOLE.print(f"{LOGGING_LOADED_MESSAGE}", style="bold green")
     
     
