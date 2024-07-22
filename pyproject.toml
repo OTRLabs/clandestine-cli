@@ -12,6 +12,7 @@ dependencies = [
     "advanced-alchemy>=0.17.3",
     "pydantic>=2.8.2",
     "surrealdb>=0.3.2",
+    "jinja2>=3.1.4",
 ]
 requires-python = "==3.12.*"
 readme = "README.md"
