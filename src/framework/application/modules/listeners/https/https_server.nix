@@ -10,6 +10,8 @@ let
     litestar
     python-dotenv
     pyopenssl
+    pydantic
+    uvicorn
     
   ]);
 in
