@@ -50,5 +50,5 @@ SUCCESS_STYLE: str = "bold"
 SUCCESS_CONFIG: str = f"{SUCCESS_COLOR} {SUCCESS_STYLE}"
 
 FAILURE_COLOR: str = "dark_red"
-FAILURE_STYLE: str = ""
+FAILURE_STYLE: str = f"bold italics"
 FAILURE_CONFIG: str = f"{FAILURE_COLOR} {FAILURE_STYLE}"
