@@ -2,15 +2,17 @@ from __future__ import annotations
 from ....configs.base import Config
 from ....configs.env_variables import Settings
 from ....configs.base import Config
-from ....configs.env_variables import Settings
 from rich import print
 from typing import List
     
 # Assuming Config.get_settings is a static or class method returning an instance of Settings.
 app_settings_instance = Config.get_settings(self=Config)
 
+# Basic App Config
+
 APP_NAME: str = "Framework"
-# Use the instance to access its attributes.
+
+
 STARTING_UP_MESSAGE: str = f"[bold]Starting up Framework v{app_settings_instance.base_settings.VERSION}[/bold]"
 STARTED_MESSAGE: str = f"[bold]Started Framework v{app_settings_instance.base_settings.VERSION}[/bold]"
 WELCOME_MESSAGE: str = f"[bold]Welcome to Framework v{app_settings_instance.base_settings.VERSION}[/bold]"
