@@ -16,7 +16,7 @@ STANDARD_RICH_MESSAGING_COLOR: str = "blue"
 STANDARD_RICH_MESSAGING_CONFIG: str = f"{STANDARD_RICH_MESSAGING_COLOR}{STANDARD_RICH_MESSAGING_STYLE}"
 
 
-ERROR_RICH_CONFIG: dict = {
+ERROR_ENUM_RICH_STRINGS_CONFIG: dict = {
     "error": "red bold",
     "critical": "red3 bold",
     "update": "orchid italic",
