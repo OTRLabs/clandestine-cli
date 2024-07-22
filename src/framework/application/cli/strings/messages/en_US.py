@@ -4,7 +4,7 @@ from ....configs.env_variables import Settings
 from ....configs.base import Config
 from rich import print
 from typing import List
-    
+from .str_formatting import *
 # Assuming Config.get_settings is a static or class method returning an instance of Settings.
 app_settings_instance = Config.get_settings(self=Config)
 
@@ -49,6 +49,8 @@ REPL_COMMANDS: list[dict] = [{
         "usage": "exit"
     },
 }]
+
+
 ## REPL STRINGS
 PROMPT_MESSAGE_COLOR: str = "blue bold"
 PROMPT_MESSAGE: str = f"[{PROMPT_MESSAGE_COLOR}]>>>[/{PROMPT_MESSAGE_COLOR}]"
@@ -68,7 +70,10 @@ REPL_HELP_MESSAGE: str = f"help: {REPL_COMMANDS}"
 SHORT_VERSION_REPL_HELP_MESSAGE: str = f"[bold blue]Available commands:[/bold blue] [green]help[/green]\n\n[green]use [module_name][/green]\n\n[green]search[/green]" 
 UNKNOWN_COMMAND_IN_REPL_MESSAGE:str = "[bold red]Unknown Command![/bold red] [blue]Type[/blue] '[green]help[/green]' [blue]for a list of commands[/blue]"
 
-SEARCHING_MODULES_MESSAGE: str = "[bold blue]Searching for modules...[/bold blue]"
+
+
+## Module messages
+SEARCHING_MODULES_MESSAGE: str = f"[{STANDARD_RICH_MESSAGING_CONFIG}]Searching for modules...[/{STANDARD_RICH_MESSAGING_CONFIG}]"
 MODULE_NOT_FOUND_MESSAGE: str = "[bold red]Module not found![/bold red]"
 MODULE_LOADED_MESSAGE: str = "[bold]Module loaded[/bold]"
 MODULE_UNLOADED_MESSAGE: str = "[bold]Module unloaded[/bold]"
@@ -107,18 +112,7 @@ SURREAL_DB_HTTP_CONNECTION_NOT_USING_SSL_MESSAGE: str = "[bold]SurrealDB HTTP co
 SURREAL_DB_IS_NOT_USING_SSL_FOR_HTTP_MESSAGE: str = "[bold]SurrealDB is not using SSL for HTTP[/bold]"
 
 
-LOGGING_ERROR_RICH_CONFIG: dict = {
-    "error": "red",
-    "critical": "red bold",
-    "warning": "yellow",
-    "service_failure": "yellow bold",
-    "info": "blue",
-    "debug": "green",
-    "critical": "red",
-    "fatal": "red",
-    "success": "green",
-    "failure": "red"
-}
+
 
 ## SurrealDB Logging Messages
 LOGGING_INITIALIZED_MESSAGE: str = f"[]Logging initialized[/]"
@@ -130,3 +124,5 @@ LOGGING_CRITICAL_MESSAGE: str = "[bold red]Logging critical[/bold red]"
 LOGGING_FATAL_MESSAGE: str = "[bold red]Logging fatal[/bold red]"
 LOGGING_SUCCESS_MESSAGE: str = "[bold]Logging success[/bold]"
 LOGGING_FAILURE_MESSAGE: str = "[bold red]Logging failure[/bold red]"
+
+
