@@ -5,8 +5,9 @@ from surrealdb import AsyncSurrealDB
 from rich.console import Console
 from typing import Any, List, Tuple
 from ...application.cli.strings.messages.en_US import *
-from surrealdb.http import *
-from surrealdb.ws import * 
+from surrealdb.http import SurrealHTTP
+from surrealdb.ws import Surreal
+#from surrealdb.
 class SurrealDBManager:
     async def __init__(self, console: Console) -> None:
         self.surreal_db_connection: AsyncSurrealDB = AsyncSurrealDB(f"{Settings.database_settings.SURREAL_DB_BASE_URL}")
