@@ -18,7 +18,7 @@ STANDARD_RICH_MESSAGING_CONFIG: str = f"{STANDARD_RICH_MESSAGING_COLOR}{STANDARD
 
 ERROR_RICH_CONFIG: dict = {
     "error": "red",
-    "critical": "red bold",
+    "critical": "red3 bold",
     "warning": "yellow",
     "service_failure": "yellow bold",
     "info": "blue",
