@@ -74,3 +74,32 @@ MODULE_RELOADED_MESSAGE: str = "[bold]Module reloaded[/bold]"
 MODULE_USAGE_MESSAGE: str = "[bold]Usage: use [module_name][/bold]"
 MODULE_ALREADY_LOADED_MESSAGE: str = "[bold]Module already loaded[/bold]"
 OPTIONS_MESSAGE: str = "[bold]Options[/bold]"
+
+
+# Database messages
+DATABASE_CONNECTION_SUCCESS_MESSAGE: str = "[bold]Database connection successful[/bold]"
+DATABASE_CONNECTION_FAILURE_MESSAGE: str = "[bold red]Database connection failed[/bold red]"
+DATABASE_CONNECTION_SUCCESS_MESSAGE: str = "[bold]Database connection successful[/bold]"
+
+CHECKING_IF_DATABASE_EXISTS_MESSAGE: str = "[bold]Checking if database exists...[/bold]"
+
+## SurrealDB messages websocket
+LOADING_SURREALDB_WEBSOCKET_MESSAGE: str = "[bold]Loading SurrealDB Websocket...[/bold]"
+SURREAL_DB_IS_NOT_USING_SSL_FOR_WEBSOCKET_MESSAGE: str = "[bold]SurrealDB is not using SSL for websocket[/bold]"
+SURREAL_DB_IS_USING_SSL_FOR_WEBSOCKET_MESSAGE: str = "[bold]SurrealDB is using SSL for websocket[/bold]"
+SURREAL_DB_WEBSOCKET_CONNECTION_SUCCESS_MESSAGE: str = "[bold]SurrealDB websocket connection successful[/bold]"
+SURREAL_DB_WEBSOCKET_CONNECTION_USING_SSL_MESSAGE: str = "[bold]SurrealDB websocket connection using SSL[/bold]"
+SURREAL_DB_WEBSOCKET_CONNECTION_NOT_USING_SSL_MESSAGE: str = "[bold]SurrealDB websocket connection not using SSL[/bold]"
+SURREAL_DB_WEBSOCKET_ERROR_WITH_SSL_MESSAGE: str = "[bold red]Error with SSL[/bold red]"
+## SurrealDB messages http
+LOADING_SURREALDB_HTTP_MESSAGE: str = "[bold]Loading SurrealDB HTTP...[/bold]"
+SURREALDB_HTTP_CONNECTION_SUCCESS_MESSAGE: str = "[bold]SurrealDB HTTP connection successful[/bold]"
+SURREALDB_HTTP_CONNECTION_USING_SSL_MESSAGE: str = "[bold]SurrealDB HTTP connection using SSL[/bold]"
+SURREALDB_HTTP_CONNECTION_NOT_USING_SSL_MESSAGE: str = "[bold]SurrealDB HTTP connection not using SSL[/bold]"
+SURREAL_DB_HTTP_ERROR_WITH_SSL_MESSAGE: str = "[bold red]Error with SSL[/bold red]"
+SURREAL_DB_IS_NOT_USING_SSL_MESSAGE: str = "[bold]SurrealDB is not using SSL[/bold]"
+SURREAL_DB_IS_USING_SSL_MESSAGE: str = "[bold]SurrealDB is using SSL[/bold]"
+SURREAL_DB_CONNECTION_NOT_USING_SSL_MESSAGE: str = "[bold]SurrealDB connection not using SSL[/bold]"
+SURREAL_DB_ERROR_WITH_SSL_MESSAGE: str = "[bold red]Error with SSL[/bold red]"
+SURREAL_DB_HTTP_CONNECTION_NOT_USING_SSL_MESSAGE: str = "[bold]SurrealDB HTTP connection not using SSL[/bold]"
+SURREAL_DB_IS_NOT_USING_SSL_FOR_HTTP_MESSAGE: str = "[bold]SurrealDB is not using SSL for HTTP[/bold]"
