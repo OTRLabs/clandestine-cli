@@ -55,8 +55,6 @@ class DownloadAndExecute(WindowsCommandExecutor):
             except Exception as e:
                 # Handle any exceptions that occur during file copy
                 console.print(f"Error copying file: {e}")
-                
-                
         else:
             console.print(f"Invalid URL provided: {self.url}")
             return
