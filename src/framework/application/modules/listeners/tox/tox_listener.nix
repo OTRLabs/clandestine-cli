@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  # Define the packages you want to install
+  # Define the packages needed to build the Tox listener 
   packages = [
     pkgs.buildPackages.c
     pkgs.buildPackages.c++
