@@ -1,5 +1,6 @@
 from __future__ import annotations
 from rich.console import Console
+#from rich.
 import os
 
 
@@ -11,6 +12,15 @@ class WindowsCommandExecutor:
         self.command: str = f"{command}"
         console.print(f"Executing command: {command}")
 
+    async def help(self, console: Console) -> None:
+        """
+        Display help information for the command.
+        """
+        console.print("This command executes a command on the target Windows host.")
+        console.print("Usage: exec <command>")
+        console.print("Example: exec whoami")
+        
+    
     async def execute(self, console: Console, command: str) -> None:
         """
         Execute the command on the Windows host. Optimize the command for stealth where possible, using progressively advanced TTPs.
