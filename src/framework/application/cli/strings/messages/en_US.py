@@ -1,5 +1,12 @@
 from __future__ import annotations
 from ....configs.base import Config
+from rich.console import Console
+from rich.table import Table
+from rich.json import JSON
+from rich.panel import Panel
+from rich.text import Text
+from rich.progress import Progress
+from rich.progress_bar import ProgressBar
 from ....configs.env_variables import Settings
 from ....configs.base import Config
 from rich import print
@@ -88,6 +95,16 @@ OPTIONS_MESSAGE: str = "[bold]Options[/bold]"
 PHISHING_MODULES: str = "[bold]Phishing Modules[/bold]"
 
 
+# Payloads Module messages
+
+## Windows Payload Module messages
+WINDOWS_PAYLOADS_MODULE_MESSAGE: str = "[bold]Windows Payloads Module[/bold]"
+WINDOWS_PAYLOADS_LOADED_MESSAGE: str = "[bold]Windows Payloads loaded[/bold]"
+WINDOWS_PAYLOADS_EXECUTING_MESSAGE: str = "[bold]Executing Windows Payload[/bold]"
+WINDOWS_PAYLOADS_EXECUTED_MESSAGE: str = "[bold]Windows Payload executed[/bold]"
+WINDOWS_PAYLOADS_EXECUTION_FAILED_MESSAGE: str = "[bold red]Windows Payload execution failed[/bold red]"
+WINDOWS_PAYLOADS_HELP_MESSAGE: str = "[bold]Windows Payloads help[/bold]"
+WINDOWS_PAYLOADS_HELP_EXECUTION_MESSAGE: str = "[bold]Windows Payloads help executed[/bold]"
 
 # Database messages
 DATABASE_CONNECTION_SUCCESS_MESSAGE: str = "[bold]Database connection successful[/bold]"
