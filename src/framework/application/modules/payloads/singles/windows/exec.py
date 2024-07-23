@@ -17,6 +17,12 @@ class WindowsCommandExecutor:
         """
         console.print(f"Executing command: {command}")
         
-        os.system(command)
+        try:
+            # Execute the command using os.system
+            os.system(command)
+            console.print(f"Command executed successfully.")
+        except Exception as e:
+            # Handle any exceptions that occur during command execution
+            console.print(f"Error executing command: {e}")
         
-        console.print(f"Command executed successfully.")
+        console.print(f"Command execution completed.")
