@@ -10,10 +10,10 @@ class SearchCommand:
     it searches the index of modules using regex + keywords to return the results that match
     
     '''
-    def __init__(self, query: str):
+    async def __init__(self, query: str):
         self.query = query
         
-    def execute(self, query: str, comand_args: str) -> Optional[List[str]]:
+    async def execute(self, query: str, comand_args: str) -> Optional[List[str]]:
         '''Executes the search command
         
         Returns:
