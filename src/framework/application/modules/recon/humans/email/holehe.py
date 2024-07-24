@@ -3,6 +3,8 @@ from __future__ import annotations
 """
 Uses the Holehe tool to analyze the target email & see what services it is registered
 
+Reference:
+https://github.com/megadose/holehe
 """
 
 
