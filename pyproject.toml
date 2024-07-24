@@ -13,6 +13,7 @@ dependencies = [
     "pydantic>=2.8.2",
     "surrealdb>=0.3.2",
     "jinja2>=3.1.4",
+    "holehe>=1.61",
 ]
 requires-python = "==3.12.*"
 readme = "README.md"
