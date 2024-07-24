@@ -43,7 +43,7 @@ class HoleheEmailAnalyzers:
         
         self.console.print(f"Checking social media accounts for email: {email}")
 
-        await discord(email=email, client=self.holehe_http_client, email=email: str, out=List[Dict[str, str]])
+        await discord(client=self.holehe_http_client, email=email, out=[])
         
     async def analyze_email(self, email: str, console: Console) -> None:
         """
