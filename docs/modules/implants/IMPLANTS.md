@@ -1,22 +1,38 @@
 # Implant Development
 
-What I mean by “implant” is basically code that we have managed to land on a target host using the stagers 
 
-For the sake of our project, & because we are trying to manage operations at scale, an implant can be anything from a curl command running as a for loop, to an entire malicious package or even entire application crafted around achieving a goal over, potentially a long period of time. 
+## Introduction to Implants as a concept
+
+For the context of the K8Sploit Framework, what I mean by “implant” is basically code that we have managed to land on a target host, and has established a connection back to our C2 server.
+
+For the sake of our project, & because we aiming to allow for advanced agent development: an implant can be anything from a curl command running as a for loop, to an entire malicious package or even entire application crafted around achieving a goal over, potentially a long period of time. 
 
 Open source projects  that would apply to projects such include:
 
-- Mythic’s Agents. They would be called that but I already have “agents” within the framework.
-- Meterpreter for the Metasploit Framework
-- Empire/starkiller has a few: but [Sharpire](https://github.com/BC-SECURITY/Sharpire) is  a C# example
+- [Mythic Framework's](https://docs.mythic-c2.net/) [Agents](https://mythicmeta.github.io/overview/)
+- [Meterpreter](https://github.com/rapid7/meterpreter) for the [Metasploit Framework](https://github.com/rapid7/metasploit-framework)
+- [Empire/starkiller](https://github.com/BC-SECURITY/Starkiller) has a few: 
+  + [Sharpire](https://github.com/BC-SECURITY/Sharpire) is  a `C#` example
 - Donut
 
-**enterprise options** for implants include
+**enterprise options** for implants include:
 
-- cobalt strike beacons
-    - Look into: BOF, aggressor scripts
+- [Cobalt Strike](https://www.cobaltstrike.com/resources) Implants
+  + [Beacon Object File](https://github.com/ajpc500/BOFs) aggressor scripts?
+  
+### **Implant Development Goals**
+#### **Community Implant Development Goals**:
+I intend to design the overall system in a way that is modular and well documented allowing for the easy addition of new implants.
 
-Goal is to amass a massive library of stagers primarily with LLVM based languages using Bazel + a  virtual Kubernetes cluster or compose environment that deploys relevant environments required to build binaries for specific implants on specific platforms. 
+
+#### **Personal Implant Development Goals**:
+I intend to focus on developing one primary `implant` to start. The goal is to develop a highly modular `implant` that is built in a component driven architecture.
+The idea is that if you break each feature/functionality of the `implant` can be easily extended with new features, and have old ones rotated out. 
+
+My long term plan is to amass a massive library of these components that can be used to build a variety of different `implants` for different purposes.
+You would be able to select the components you want to include in the `implant` before building it.  
+
+primarily with LLVM based languages using Bazel + a  virtual Kubernetes cluster or compose environment that deploys relevant environments required to build binaries for specific implants on specific platforms. 
 
 in addition to LLVM we will have stagers in other languages as well, that can be used to obtain shells such as PHP, JS/TS, etc. 
 
