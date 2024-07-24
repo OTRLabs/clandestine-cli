@@ -31,9 +31,14 @@ class HoleheEmailAnalyzers:
 
 
     async def check_social_media(self, email: str, console: Console) -> None:
+        
         """
         Check the target email for social media accounts using Holehe
         """
+        console.print(f"Importing holehe modules for checking social media services: {email}")
+        from holehe.modules.social_media.discord import discord
+        from holehe.modules.social_media.crevado import crevado
+        from holehe.modules.social_media.bitmoji import bitmoji
         self.console.print(f"Checking social media accounts for email: {email}")
 
     async def analyze_email(self, email: str, console: Console) -> None:
