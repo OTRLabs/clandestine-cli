@@ -16,10 +16,14 @@ import holehe
 
 
 class HoleheEmailAnalyzers:
-    def __init__(self, console: Console) -> None:
+    '''
+    Uses the Holehe tool to analyze the target email & see what services it is registered
+    '''
+    
+    async def __init__(self, console: Console) -> None:
         self.console = console
 
-    def analyze_email(self, email: str, console: Console) -> None:
+    async def analyze_email(self, email: str, console: Console) -> None:
         """
         Analyze the target email using Holehe
         """
