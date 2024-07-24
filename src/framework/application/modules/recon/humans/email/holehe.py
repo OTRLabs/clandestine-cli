@@ -23,7 +23,15 @@ class HoleheEmailAnalyzers:
     '''
     
     async def __init__(self, console: Console) -> None:
+        
         self.console = console
+
+
+    async def check_social_media(self, email: str, console: Console) -> None:
+        """
+        Check the target email for social media accounts using Holehe
+        """
+        self.console.print(f"Checking social media accounts for email: {email}")
 
     async def analyze_email(self, email: str, console: Console) -> None:
         """
