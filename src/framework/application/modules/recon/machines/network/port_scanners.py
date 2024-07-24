@@ -47,6 +47,28 @@ class PortScannerManagers:
             nmap_port_scanner_index: dict = {}
 
             return nmap_port_scanner_index
+        
+
+    class MasscanPortScannerManager:
+        """
+        Manages the Masscan port scanner.
+        """
+
+        async def __init__(self) -> None:
+            """
+            Initialize the MasscanPortScannerManager class.
+            """
+            pass
+
+        async def index_masscan_port_scanner_command_list(self, console: Console) -> dict:
+            """
+            List all masscan port scan commands in the app.
+
+            Returns:
+                dict: 
+            """
+            console.print(f"{LOADING_MESSAGE}")
+            
 
     async def index_port_scanner_list(self, console: Console) -> dict:
         """
