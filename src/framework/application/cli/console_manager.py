@@ -22,10 +22,10 @@ class ConsoleManager:
         while True:
             command: str = Prompt.ask(PROMPT_MESSAGE)
             if command == "exit":
-                console.print(EXITING_REPL_MESSAGE, style="bold red")
+                console.print(EXITING_REPL_MESSAGE)
                 break
             elif command.startswith("search"):
-                console.print("Search is not implemented yet", style="bold blue")
+                console.print("Search is not implemented yet")
             elif command == "help":
                 commands = await CommandHandler.execute_command("help", console)
                 if isinstance(commands, dict):
@@ -33,6 +33,6 @@ class ConsoleManager:
                 else:
                     console.print(f"{commands}")
             elif command == "options":
-                console.print(f"{OPTIONS_MESSAGE}:\n", style="bold blue")
+                console.print(f"{OPTIONS_MESSAGE}:\n")
             else:
-                console.print(f"{UNKNOWN_COMMAND_IN_REPL_MESSAGE}: {command}", style="bold red")
+                console.print(f"{UNKNOWN_COMMAND_IN_REPL_MESSAGE}: {command}")
