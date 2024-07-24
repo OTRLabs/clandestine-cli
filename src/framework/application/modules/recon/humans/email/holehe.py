@@ -14,6 +14,7 @@ from typing import List, Dict
 from rich.console import Console
 
 import holehe
+import httpx
 
 
 
@@ -25,6 +26,8 @@ class HoleheEmailAnalyzers:
     async def __init__(self, console: Console) -> None:
         
         self.console = console
+        
+        self.holehe_http_client: httpx.AsyncClient = httpx.AsyncClient()
 
 
     async def check_social_media(self, email: str, console: Console) -> None:
