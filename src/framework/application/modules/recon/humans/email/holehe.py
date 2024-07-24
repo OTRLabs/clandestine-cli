@@ -41,6 +41,14 @@ class HoleheEmailAnalyzers:
         from holehe.modules.social_media.crevado import crevado
         from holehe.modules.social_media.bitmoji import bitmoji
         
+        from holehe.modules.social_media.snapchat import snapchat
+        from holehe.modules.social_media.pinterest import pinterest
+        from holehe.modules.social_media.instagram import instagram
+        from holehe.modules.social_media.parler import parler
+        from holehe.modules.social_media.tellonym import tellonym
+        from holehe.modules.social_media.twitter import twitter
+        from holehe.modules.social_media.tumblr import tumblr
+        from holehe.modules.social_media.patreon import patreon
         self.console.print(f"Checking social media accounts for email: {email}")
 
         self.console.print(f"Checking Discord account for email: {email}")
@@ -53,6 +61,8 @@ class HoleheEmailAnalyzers:
         self.console.print(f"Checking Crevado account for email: {email}")
         await crevado(client=self.holehe_http_client, email=email, out=[])
         self.console.print(f"Finished checking social media accounts for email: {email}")
+    
+        self
         
     async def analyze_email(self, email: str, console: Console) -> None:
         """
