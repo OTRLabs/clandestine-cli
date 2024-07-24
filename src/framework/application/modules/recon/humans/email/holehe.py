@@ -29,6 +29,7 @@ class HoleheEmailAnalyzers:
         
         self.holehe_http_client: httpx.AsyncClient = httpx.AsyncClient()
 
+        
 
     async def check_social_media(self, email: str, console: Console) -> None:
         
@@ -39,8 +40,11 @@ class HoleheEmailAnalyzers:
         from holehe.modules.social_media.discord import discord
         from holehe.modules.social_media.crevado import crevado
         from holehe.modules.social_media.bitmoji import bitmoji
+        
         self.console.print(f"Checking social media accounts for email: {email}")
 
+        await discord(email=email, client=self.holehe_http_client, email=email: str, out=List[Dict[str, str]])
+        
     async def analyze_email(self, email: str, console: Console) -> None:
         """
         Analyze the target email using Holehe
