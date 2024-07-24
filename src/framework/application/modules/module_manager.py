@@ -11,4 +11,7 @@ class ModuleManager:
             dict: A dictionary containing all the modules.
             
         """
-        pass
+        
+        module_index: dict = {}
+        
+        return module_index
