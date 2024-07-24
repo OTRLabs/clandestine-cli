@@ -31,7 +31,7 @@ class HoleheEmailAnalyzers:
 
         
 
-    async def check_social_media(self, email: str, console: Console) -> None:
+    async def check_social_media_services_for_target_email(self, email: str, console: Console) -> None:
         
         """
         Check the target email for social media accounts using Holehe
@@ -43,7 +43,16 @@ class HoleheEmailAnalyzers:
         
         self.console.print(f"Checking social media accounts for email: {email}")
 
+        self.console.print(f"Checking Discord account for email: {email}")
         await discord(client=self.holehe_http_client, email=email, out=[])
+        self.console.print(f"Checking Crevado account for email: {email}")
+        
+        self.console.print(f"Checking Bitmoji account for email: {email}")
+        await bitmoji(client=self.holehe_http_client, email=email, out=[])
+        
+        self.console.print(f"Checking Crevado account for email: {email}")
+        await crevado(client=self.holehe_http_client, email=email, out=[])
+        self.console.print(f"Finished checking social media accounts for email: {email}")
         
     async def analyze_email(self, email: str, console: Console) -> None:
         """
