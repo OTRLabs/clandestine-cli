@@ -60,7 +60,9 @@ class HoleheEmailAnalyzers:
         self.console.print(f"Crevado results: {crevado_results}")
         
         self.console.print(f"Checking Bitmoji account for email: {email}")
-        await bitmoji(client=self.holehe_http_client, email=email, out=[])
+        bitmoji_results:list = await bitmoji(client=self.holehe_http_client, email=email, out=[])
+        self.console.print(f"Bitmoji results: {bitmoji_results}")
+        
         
         self.console.print(f"Checking Crevado account for email: {email}")
         await crevado(client=self.holehe_http_client, email=email, out=[])
