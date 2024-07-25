@@ -10,27 +10,7 @@ from .commands.search import SearchCommand
 from .strings.messages.en_US import *
 from .strings.messages.str_formatting import *
 from ..configs.base import Config
-import rich.repr
 
-@rich.repr.auto
-class Command:
-    '''
-    Base class defining the structure for all commands
-    '''
-    def __init__(self, command_name: str, command_slug: str, command_description: str, help_message: str) -> None:
-        self.name: str = command_name
-        self.command: str = command_slug
-        self.description: str = command_description
-        self.help_message: str = help_message
-
-
-CLI_COMMANDS_INDEX: list[Command] = [
-    Command("help", "help", "List available commands", "help"),
-    Command("use", "use", "Load a module", "use [module_name]"),
-    Command("search", "search", "Search for modules", "search [keyword]"),
-    Command("exit", "exit", "Exit the REPL", "exit")
-
-]
 class CommandHandler:
     
     async def execute_command(command, console: Console) -> None:
