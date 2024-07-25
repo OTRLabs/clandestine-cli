@@ -6,7 +6,7 @@ from rich.panel import Panel
 import logging
 from .configs.base import Config
 from .cli.strings.messages.en_US import Messages
-
+from ..application.configs.env_variables import Settings
 class SetupFramework:
     def __init__(self):
         self.APP_SETTINGS = Config.get_settings(self=Config)
@@ -40,7 +40,7 @@ class SetupFramework:
 
     async def setup_logging(self, console: Console) -> None:
         console.print(Panel("Setting up logging", title="Logging Setup"))
-        logging_level = self.APP_SETTINGS.logging_settings.LOGGING_LEVEL
+        #logging_level 
         logging.basicConfig(level=logging_level)
         console.print(f"Logging level set to: {logging_level}")
 
