@@ -1,46 +1,35 @@
 from __future__ import annotations
-
 from typing import List
 from rich.console import Console
-
-from rich.json import JSON
-
+from rich.panel import Panel
+from rich.table import Table
 from .commands.search import SearchCommand
-
-from .strings.messages.en_US import *
-from .strings.messages.str_formatting import *
-from ..configs.base import Config
+from .strings.messages.en_US import Messages, CLI_COMMANDS_INDEX, create_command_table
 
 class CommandHandler:
-    
-    async def execute_command(command, console: Console) -> None:
+    @staticmethod
+    async def execute_command(command: str, console: Console) -> None:
         """
         Command processing logic used to handle any command fed to the REPL
-        
-        parses the command and returns the appropriate response
- 
+        Parses the command and returns the appropriate response
         """
-        if command == "help":
-            # Display the help message
-            console.print(f"Available commands:\n\n[bold black]------------[/bold black]\n\n{CLI_COMMANDS_INDEX}")
-            ## return None to keep the REPL running
-            return None
+        command = command.strip().lower()
 
+        if command == "help":
+            console.print(Panel(create_command_table(CLI_COMMANDS_INDEX), title="Available Commands"))
         elif command.startswith("use"):
-            # Load a module
-            console.print("Loading module: " + command[4:])
-            return None
+            module = command[4:].strip()
+            console.print(Panel(f"Loading module: {module}", title="Module Loader"))
         elif command.startswith("search"):
-            
-            console.print("Searching for: " + command[7:])
-            command = SearchCommand(command[7:])
-            results = command.execute()
-            console.print(JSON(results))
-            
-            return None 
+            keyword = command[7:].strip()
+            console.print(Panel(f"Searching for: {keyword}", title="Search"))
+            search_command = SearchCommand(keyword)
+            results = search_command.execute()
+            console.print(Panel.fit(results, title="Search Results"))
         elif command == "exit":
-            # Exit the REPL
-            console.print(EXIT_COMMAND_HANDLER_MESSAGE)
-            return None
+            console.print(Messages.General.EXITING)
+            return "exit"
         else:
-            return "Unknown command"
+            console.print(Messages.REPL.UNKNOWN_COMMAND)
+
+        return None
