@@ -12,6 +12,7 @@ from rich import print
 from typing import List
 from rich.repr import rich_repr
 from .str_formatting import *
+from datetime import datetime
 
 app_settings_instance = Config.get_settings(self=Config)
 
@@ -91,8 +92,8 @@ class Messages:
     class Database:
         LOADED = MessageTemplates.LOADED.format(color=Colors.SUCCESS, component="Database")
         CONNECTING = MessageTemplates.LOADING.format(color=Colors.INFO, component="Database connection")
-        CONNECTION_SUCCESS = Text("Database connection successful", style=Colors.SUCCESS)
-        CONNECTION_FAILURE = Text("Database connection failed", style=Colors.ERROR)
+        CONNECTION_SUCCESS = Text(f"Database connection successful | {datetime.now()}", style=Colors.SUCCESS)
+        CONNECTION_FAILURE = Text(f"Database connection failed | {datetime.now()}", style=Colors.ERROR)
         CHECKING_EXISTS = Text("Checking if database exists...", style=Colors.INFO)
         DATABASE_EXISTS = Text("Database exists", style=Colors.SUCCESS)
         DATABASE_DOES_NOT_EXIST = Text("Database does not exist", style=Colors.ERROR)
@@ -101,10 +102,10 @@ class Messages:
         ERROR = Text("Database error", style=Colors.ERROR)
         WARNING = Text("Database warning", style=Colors.WARNING)
         INFO = Text("Database info", style=Colors.INFO)
-        DEBUG = Text("Database debug", style=Colors.INFO)
-        CRITICAL = Text("Database critical", style=Colors.ERROR)
-        FATAL = Text("Database fatal", style=Colors.ERROR)
-        
+        DEBUG = Text(f"Database debug | {datetime.now()}", style=Colors.INFO)
+        CRITICAL = Text(f"Database critical | {datetime.now()}", style=Colors.ERROR)
+        FATAL = Text(f"Database fatal | {datetime.now()}", style=Colors.ERROR)
+
         class SurrealDB:
             WEBSOCKET_LOADING = MessageTemplates.LOADING.format(color=Colors.INFO, component="SurrealDB Websocket")
             HTTP_LOADING = MessageTemplates.LOADING.format(color=Colors.INFO, component="SurrealDB HTTP")

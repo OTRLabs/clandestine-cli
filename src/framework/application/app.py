@@ -59,5 +59,5 @@ class SetupFramework:
         elif self.APP_SETTINGS.database_settings.PostgresDatabaseSettings.POSTGRES_DB_URI:
             return "PostgreSQL"
         else:
-            error_message = Messages.Database.
+            error_message = Messages.Database.ERROR
             raise Exception(error_message)
