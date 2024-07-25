@@ -13,7 +13,7 @@ from typing import List
 from rich.repr import rich_repr
 from .str_formatting import *
 from datetime import datetime
-
+from enum import Enum
 app_settings_instance = Config.get_settings(self=Config)
 
 console = Console()
@@ -113,7 +113,9 @@ class Messages:
             CONNECTION_SUCCESS = lambda protocol, using_ssl: Text(f"SurrealDB {protocol} connection successful" + (f" using SSL" if using_ssl else ""), style=Colors.SUCCESS)
             SSL_ERROR = Text("Error with SSL", style=Colors.ERROR)
 
+    
     class Logging:
+    
         INITIALIZED = Text("Logging initialized", style=Colors.SUCCESS)
         ERROR = Text("Logging error", style=Colors.ERROR)
         WARNING = Text("Logging warning", style=Colors.WARNING)

@@ -1,7 +1,7 @@
 from __future__ import annotations
 import os
 from dotenv import load_dotenv
-
+from enum import Enum
 from uuid import UUID
 load_dotenv()
 
@@ -32,8 +32,18 @@ class ExternalWebUISettings:
     class TorWebUISettings:
         TOR_WEBUI_PORT: int = os.getenv("TOR_WEBUI_PORT", 8080)
         TOR_WEBUI_HOST: str = os.getenv("TOR_WEBUI_HOST")
-        
-            
+
+class LoggingSettings:
+    
+    class LoggingLevels(Enum, str):
+            DEBUG: str = "DEBUG"
+            INFO: str = "INFO"
+            WARNING: str = "WARNING"
+            ERROR: str = "ERROR"
+            CRITICAL: str = "CRITICAL"
+            FATAL: str = "FATAL"
+
+
 class DatabaseSettings:
     
     # Database Connection
