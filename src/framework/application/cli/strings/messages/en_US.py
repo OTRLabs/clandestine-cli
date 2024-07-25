@@ -149,3 +149,4 @@ LOGGING_SUCCESS_MESSAGE: str = "[bold]Logging success[/bold]"
 LOGGING_FAILURE_MESSAGE: str = "[bold red]Logging failure[/bold red]"
 
 
+EXIT_COMMAND_HANDLER_MESSAGE: str = f"[{STANDARD_RICH_MESSAGING_CONFIG}]Exiting Framework v{app_settings_instance.base_settings.VERSION}[/{STANDARD_RICH_MESSAGING_CONFIG}]"

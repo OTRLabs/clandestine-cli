@@ -9,7 +9,7 @@ from .commands.search import SearchCommand
 
 from .strings.messages.en_US import *
 from .strings.messages.str_formatting import *
-
+from ..configs.base import Config
 
 class CommandHandler:
     
@@ -23,6 +23,13 @@ class CommandHandler:
         if command == "help":
             # Display the help message
             console.print(HELP_COMMAND_HANDLER_MESSAGE)
+            ## return None to keep the REPL running
+            return None
+
+        elif command.startswith("use"):
+            # Load a module
+            console.print("Loading module: " + command[4:])
+            return None
         elif command.startswith("search"):
             
             console.print("Searching for: " + command[7:])
@@ -32,6 +39,8 @@ class CommandHandler:
             
             return None 
         elif command == "exit":
+            # Exit the REPL
+            console.print(EXIT_COMMAND_HANDLER_MESSAGE)
             return None
         else:
             return "Unknown command"
