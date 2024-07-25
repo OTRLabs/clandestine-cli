@@ -11,6 +11,7 @@ from ....configs.env_variables import Settings
 from ....configs.base import Config
 from rich import print
 from typing import List
+from ...command_handler import CLI_COMMANDS_INDEX as REPL_COMMANDS
 from .str_formatting import *
 # Assuming Config.get_settings is a static or class method returning an instance of Settings.
 app_settings_instance = Config.get_settings(self=Config)
@@ -35,30 +36,6 @@ PROMPT_MESSAGE_COLOR: str = "blue bold"
 PROMPT_MESSAGE: str = f"[{PROMPT_MESSAGE_COLOR}]>>>[/{PROMPT_MESSAGE_COLOR}]"
 
 
-## REPL Command Data
-REPL_COMMANDS: list[dict] = [{
-    "help": {
-        "name": "help",
-        "description": "List available commands",
-        "usage": "help"
-    },
-    
-    "use": {
-        "name": "use",
-        "description": "Load a module",
-        "usage": "use [module_name]"
-    },
-    "search": {
-        "name": "search",
-        "description": "Search for modules",
-        "usage": "search [keyword]"
-    }, 
-    "exit": {
-        "name": "exit",
-        "description": "Exit the REPL",
-        "usage": "exit"
-    },
-}]
 
 HELP_COMMAND_HANDLER_MESSAGE: str = f"[bold blue]Available commands[/bold blue]:\n\n{REPL_COMMANDS}\n\n"
 
