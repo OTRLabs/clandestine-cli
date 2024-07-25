@@ -10,7 +10,7 @@ from .commands.search import SearchCommand
 from .strings.messages.en_US import *
 from .strings.messages.str_formatting import *
 from ..configs.base import Config
-from rich.repr
+import rich.repr
 
 @rich.repr.auto
 class Command:
@@ -22,6 +22,15 @@ class Command:
         self.command: str = command_slug
         self.description: str = command_description
         self.help_message: str = help_message
+
+
+COMMANDS: list[Command] = [
+    Command("help", "help", "List available commands", "help"),
+    Command("use", "use", "Load a module", "use [module_name]"),
+    Command("search", "search", "Search for modules", "search [keyword]"),
+    Command("exit", "exit", "Exit the REPL", "exit")
+
+]
 class CommandHandler:
     
     async def execute_command(command, console: Console) -> None:
