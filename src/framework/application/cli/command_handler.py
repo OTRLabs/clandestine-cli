@@ -24,7 +24,7 @@ class Command:
         self.help_message: str = help_message
 
 
-COMMANDS: list[Command] = [
+CLI_COMMANDS_INDEX: list[Command] = [
     Command("help", "help", "List available commands", "help"),
     Command("use", "use", "Load a module", "use [module_name]"),
     Command("search", "search", "Search for modules", "search [keyword]"),
@@ -42,7 +42,7 @@ class CommandHandler:
         """
         if command == "help":
             # Display the help message
-            console.print(HELP_COMMAND_HANDLER_MESSAGE)
+            console.print(f"Available commands:\n\n[bold black]------------[/bold black]\n\n{CLI_COMMANDS_INDEX}")
             ## return None to keep the REPL running
             return None
 
