@@ -11,16 +11,50 @@ from ....configs.env_variables import Settings
 from ....configs.base import Config
 from rich import print
 from typing import List
-from ...command_handler import CLI_COMMANDS_INDEX as REPL_COMMANDS
+from rich.repr import rich_repr
 from .str_formatting import *
+from rich.console import Console
+from rich.table import Table
+from rich.panel import Panel
+from rich.text import Text
+from rich.progress import Progress
+from rich.progress_bar import ProgressBar
+from rich import print
 # Assuming Config.get_settings is a static or class method returning an instance of Settings.
 app_settings_instance = Config.get_settings(self=Config)
 
 # Basic App Config
 
 APP_NAME: str = "K8Sploit Framework"
+class Command:
+    '''
+    Base class defining the structure for all commands
+    '''
+    def __init__(self, command_name: str, command_slug: str, command_description: str, help_message: str) -> None:
+        self.command_name: str = command_name
+        self.command: str = command_slug
+        self.command_description: str = command_description
+        self.help_message: str = help_message
 
+console = Console()
 
+CLI_COMMANDS_INDEX: list[Command] = [
+    Command("help", "help", "List available commands", "help"),
+    Command("use", "use", "Load a module", "use [module_name]"),
+    Command("search", "search", "Search for modules", "search [keyword]"),
+    Command("exit", "exit", "Exit the REPL", "exit")
+]
+
+table = Table(show_header=True, header_style="bold magenta")
+table.add_column("Command", style="cyan")
+table.add_column("Slug", style="green")
+table.add_column("Description", style="blue")
+table.add_column("Help", style="yellow")
+
+for command in CLI_COMMANDS_INDEX:
+    table.add_row(command.command_name, command.command, command.command_description, command.help_message)
+
+AVAILABLE_COMMANDS_MESSAGE: Table = console.print(Panel.fit(table, title="Available Commands"))
 STARTING_UP_MESSAGE: str = f"[{STANDARD_RICH_MESSAGING_CONFIG}]Starting up Framework v{app_settings_instance.base_settings.VERSION}[/{STANDARD_RICH_MESSAGING_CONFIG}]"
 STARTED_MESSAGE: str = f"[{SUCCESS_CONFIG}]Started Framework v{app_settings_instance.base_settings.VERSION}[/{SUCCESS_CONFIG}]"
 WELCOME_MESSAGE: str = f"[{STANDARD_RICH_MESSAGING_CONFIG}]Welcome to Framework v{app_settings_instance.base_settings.VERSION}[/{STANDARD_RICH_MESSAGING_CONFIG}]"
@@ -37,7 +71,7 @@ PROMPT_MESSAGE: str = f"[{PROMPT_MESSAGE_COLOR}]>>>[/{PROMPT_MESSAGE_COLOR}]"
 
 
 
-HELP_COMMAND_HANDLER_MESSAGE: str = f"[bold blue]Available commands[/bold blue]:\n\n{REPL_COMMANDS}\n\n"
+HELP_COMMAND_HANDLER_MESSAGE: str = f"[bold blue]Available commands[/bold blue]:\n\n{CLI_COMMANDS_INDEX}\n\n"
 
 ## REPL messages
 OFFER_EXIT_COMMAND_MESSAGE: str = "[bold]Type 'exit' to exit the REPL[/bold]"
@@ -47,7 +81,7 @@ EXITING_REPL_MESSAGE: str = "[bold red]Exiting REPL![/bold red]\n\nThank you for
 STARTING_REPL_MESSAGE: str = f"[bold blue]Starting {APP_NAME} REPL[/bold blue]"
 STARTED_REPL_MESSAGE: str = f"[bold blue]{APP_NAME} REPL started[/bold blue]"
 
-REPL_HELP_MESSAGE: str = f"help: {REPL_COMMANDS}"
+REPL_HELP_MESSAGE: str = f"help: {CLI_COMMANDS_INDEX}"
 
 
 # HELP messages
