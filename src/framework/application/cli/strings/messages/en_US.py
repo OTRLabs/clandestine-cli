@@ -30,6 +30,9 @@ TASK_QUEUE_LOADED_MESSAGE: str = f"[{SUCCESS_CONFIG}]Task queue loaded[/{SUCCESS
 LOGGING_LOADED_MESSAGE: str = f"[{SUCCESS_CONFIG}]Logging loaded[/{SUCCESS_CONFIG}]"
 
 ## Console messages
+## REPL STRINGS
+PROMPT_MESSAGE_COLOR: str = "blue bold"
+PROMPT_MESSAGE: str = f"[{PROMPT_MESSAGE_COLOR}]>>>[/{PROMPT_MESSAGE_COLOR}]"
 
 
 ## REPL Command Data
@@ -57,10 +60,7 @@ REPL_COMMANDS: list[dict] = [{
     },
 }]
 
-
-## REPL STRINGS
-PROMPT_MESSAGE_COLOR: str = "blue bold"
-PROMPT_MESSAGE: str = f"[{PROMPT_MESSAGE_COLOR}]>>>[/{PROMPT_MESSAGE_COLOR}]"
+HELP_COMMAND_HANDLER_MESSAGE: str = f"[bold blue]Available commands[/bold blue]:\n\n{REPL_COMMANDS}\n\n"
 
 ## REPL messages
 OFFER_EXIT_COMMAND_MESSAGE: str = "[bold]Type 'exit' to exit the REPL[/bold]"
