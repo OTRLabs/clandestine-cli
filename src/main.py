@@ -24,8 +24,8 @@ async def main() -> None:
         
         setup_steps = [
             ("setup_database", Messages.Database.LOADED),
-            ("setup_caching", Messages.General.LOADED.format(component="Cache")),
-            ("setup_task_queue", Messages.General.LOADED.format(component="Task Queue")),
+            ("setup_caching", Messages.General.LOADING.format(component="Cache")),
+            ("setup_task_queue", Messages.General.LOADING.format(component="Task Queue")),
             ("setup_logging", Messages.Logging.INITIALIZED),
             ("setup_module_services", Messages.General.LOADED.format(component="Module Services"))
         ]
