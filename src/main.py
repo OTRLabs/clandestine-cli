@@ -27,7 +27,7 @@ async def main() -> None:
             ("setup_caching", Messages.General.LOADING.format(component="Cache")),
             ("setup_task_queue", Messages.General.LOADING.format(component="Task Queue")),
             ("setup_logging", Messages.Logging.INITIALIZED),
-            ("setup_module_services", Messages.General.LOADED.format(component="Module Services"))
+            ("setup_module_services", Messages.General.LOADING.format(component="Module Services"))
         ]
 
         for step, message in setup_steps:
