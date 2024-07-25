@@ -10,7 +10,18 @@ from .commands.search import SearchCommand
 from .strings.messages.en_US import *
 from .strings.messages.str_formatting import *
 from ..configs.base import Config
+from rich.repr
 
+@rich.repr.auto
+class Command:
+    '''
+    Base class defining the structure for all commands
+    '''
+    def __init__(self, command_name: str, command_slug: str, command_description: str, help_message: str) -> None:
+        self.name: str = command_name
+        self.command: str = command_slug
+        self.description: str = command_description
+        self.help_message: str = help_message
 class CommandHandler:
     
     async def execute_command(command, console: Console) -> None:
