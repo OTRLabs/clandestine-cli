@@ -1,55 +1,43 @@
 from __future__ import annotations
-
-from sqlalchemy import create_engine, MetaData
+from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
 from rich.console import Console
+from rich.panel import Panel
 import logging
-
 from .configs.base import Config
+from .cli.strings.messages.en_US import Messages
 
 class SetupFramework:
-    '''
-    Handles the setup of the Framework services
-    - database
-    - cache
-    - task queue
-    - logging
-    - etc
-    '''
     def __init__(self):
-        # Initialize APP_SETTINGS in the constructor
         self.APP_SETTINGS = Config.get_settings(self=Config)
 
     async def setup_database(self, console: Console) -> declarative_base:
         try:
-            # Access the SQLITE_DATABASE_URL directly from APP_SETTINGS
             engine = create_engine(self.APP_SETTINGS.database_settings.SQLITE_DATABASE_URL)
-            console.print(f"Setting up database")
             Base = declarative_base(bind=engine)
-            console.print(f"Created database at {self.APP_SETTINGS.database_settings.SURREAL_DB_DATABASE}")
+            console.print(Panel(f"Created database at {self.APP_SETTINGS.database_settings.SURREAL_DB_DATABASE}", title="Database Setup"))
             return Base
         except Exception as e:
-            console.print(f"Error setting up database: {str(e)}")
-            logging.error(f"Error setting up database: {str(e)}")
-    
-    
+            error_message = f"Error setting up database: {str(e)}"
+            console.print(Panel(error_message, title="Database Error", style="bold red"))
+            logging.error(error_message)
+            raise
+
     async def setup_caching(self, console: Console) -> None:
-        console.print(f"Setting up caching using Redis")
-        
-        return None 
+        console.print(Panel("Setting up caching using Redis", title="Cache Setup"))
+        # Implement caching setup logic here
+    
     async def setup_module_services(self, console: Console) -> None:
-        console.print("Setting up module services")
-        
-        return None
+        console.print(Panel("Setting up module services", title="Module Services Setup"))
+        # Implement module services setup logic here
+    
     async def setup_task_queue(self, console: Console) -> None:
-        console.print("Setting up task queue using SAQ")
-        
-        return None    
+        console.print(Panel("Setting up task queue using SAQ", title="Task Queue Setup"))
+        # Implement task queue setup logic here
     
     async def setup_logging(self, console: Console) -> None:
-        # read the logging level from the settings config
-        console.print("Setting up logging")
-        return None
-    
+        console.print(Panel("Setting up logging", title="Logging Setup"))
+        logging_level = self.APP_SETTINGS.logging_settings.LOGGING_LEVEL
+        logging.basicConfig(level=logging_level)
+        console.print(f"Logging level set to: {logging_level}")
      

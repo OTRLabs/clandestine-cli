@@ -1,46 +1,47 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING, Any, Dict, List, Optional, Tuple, Union
 from rich.console import Console
+from rich.progress import Progress
 from framework.application.configs.base import Config
-from framework.application.cli.strings.messages.en_US import *
+from framework.application.cli.strings.messages.en_US import Messages
 from framework.application.cli.console_manager import ConsoleManager
 from framework.application import app
 import asyncio
-from rich.json import JSON
 
 async def main() -> None:
     """
     The main function of the app.
     Launches the application and starts the CLI.
     """
-    CURRENT_CONSOLE: Console = ConsoleManager.APPLICATION_CONSOLE
-    CURRENT_CONSOLE.print(f"{WELCOME_MESSAGE}")
+    console: Console = ConsoleManager.APPLICATION_CONSOLE
+    console.print(Messages.General.WELCOME)
     
-    ## load the settings
     system_settings: app.SetupFramework = app.SetupFramework()
     
-    CURRENT_CONSOLE.print(f"{LOADING_MESSAGE}")
-    await system_settings.setup_database(console=CURRENT_CONSOLE)
-    CURRENT_CONSOLE.print(f"{DATABASE_LOADED_MESSAGE}")
-    
-    
-    await system_settings.setup_caching(console=CURRENT_CONSOLE)
-    CURRENT_CONSOLE.print(f"{CACHE_LOADED_MESSAGE}")
-    
-    await system_settings.setup_task_queue(console=CURRENT_CONSOLE)
-    CURRENT_CONSOLE.print(f"{TASK_QUEUE_LOADED_MESSAGE}")
-    
-    await system_settings.setup_logging(console=CURRENT_CONSOLE)
-    CURRENT_CONSOLE.print(f"{LOGGING_LOADED_MESSAGE}")
-    
-    
-    
-    CURRENT_CONSOLE.print(f"{STARTED_MESSAGE}")
-    
-    ## load all the modules
+    with Progress() as progress:
+        task = progress.add_task("[cyan]Setting up...", total=5)
 
-    ## Launch the REPL
-    await ConsoleManager.start_repl(console=CURRENT_CONSOLE)
+        console.print(Messages.General.LOADING)
+        
+        setup_steps = [
+            ("setup_database", Messages.Database.LOADED),
+            ("setup_caching", Messages.General.LOADED.format(component="Cache")),
+            ("setup_task_queue", Messages.General.LOADED.format(component="Task Queue")),
+            ("setup_logging", Messages.Logging.INITIALIZED),
+            ("setup_module_services", Messages.General.LOADED.format(component="Module Services"))
+        ]
+
+        for step, message in setup_steps:
+            try:
+                await getattr(system_settings, step)(console=console)
+                console.print(message)
+                progress.update(task, advance=1)
+            except Exception as e:
+                console.print(f"[bold red]Error during {step}: {str(e)}[/bold red]")
+                return
+
+    console.print(Messages.General.STARTED)
+    
+    await ConsoleManager.start_repl(console=console)
 
 if __name__ == "__main__":
     asyncio.run(main())
