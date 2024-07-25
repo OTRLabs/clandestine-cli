@@ -94,7 +94,17 @@ class Messages:
         CONNECTION_SUCCESS = Text("Database connection successful", style=Colors.SUCCESS)
         CONNECTION_FAILURE = Text("Database connection failed", style=Colors.ERROR)
         CHECKING_EXISTS = Text("Checking if database exists...", style=Colors.INFO)
-
+        DATABASE_EXISTS = Text("Database exists", style=Colors.SUCCESS)
+        DATABASE_DOES_NOT_EXIST = Text("Database does not exist", style=Colors.ERROR)
+        CREATING = MessageTemplates.LOADING.format(color=Colors.INFO, component="Database")
+        CREATED = Text("Database created", style=Colors.SUCCESS)
+        ERROR = Text("Database error", style=Colors.ERROR)
+        WARNING = Text("Database warning", style=Colors.WARNING)
+        INFO = Text("Database info", style=Colors.INFO)
+        DEBUG = Text("Database debug", style=Colors.INFO)
+        CRITICAL = Text("Database critical", style=Colors.ERROR)
+        FATAL = Text("Database fatal", style=Colors.ERROR)
+        
         class SurrealDB:
             WEBSOCKET_LOADING = MessageTemplates.LOADING.format(color=Colors.INFO, component="SurrealDB Websocket")
             HTTP_LOADING = MessageTemplates.LOADING.format(color=Colors.INFO, component="SurrealDB HTTP")
