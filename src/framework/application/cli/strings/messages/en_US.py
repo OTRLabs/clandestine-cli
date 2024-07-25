@@ -8,156 +8,111 @@ from rich.text import Text
 from rich.progress import Progress
 from rich.progress_bar import ProgressBar
 from ....configs.env_variables import Settings
-from ....configs.base import Config
 from rich import print
 from typing import List
 from rich.repr import rich_repr
 from .str_formatting import *
-from rich.console import Console
-from rich.table import Table
-from rich.panel import Panel
-from rich.text import Text
-from rich.progress import Progress
-from rich.progress_bar import ProgressBar
-from rich import print
-# Assuming Config.get_settings is a static or class method returning an instance of Settings.
+
 app_settings_instance = Config.get_settings(self=Config)
-
-# Basic App Config
-
-APP_NAME: str = "K8Sploit Framework"
-class Command:
-    '''
-    Base class defining the structure for all commands
-    '''
-    def __init__(self, command_name: str, command_slug: str, command_description: str, help_message: str) -> None:
-        self.command_name: str = command_name
-        self.command: str = command_slug
-        self.command_description: str = command_description
-        self.help_message: str = help_message
 
 console = Console()
 
-CLI_COMMANDS_INDEX: list[Command] = [
+class Constants:
+    APP_NAME = "K8Sploit Framework"
+    VERSION = app_settings_instance.base_settings.VERSION
+
+class Colors:
+    STANDARD = "bold white"
+    SUCCESS = "bold green"
+    INFO = "bold blue"
+    WARNING = "bold yellow"
+    ERROR = "bold red"
+    PROMPT = "blue bold"
+
+class MessageTemplates:
+    LOADING = "[{color}]Loading {component}...[/{color}]"
+    LOADED = "[{color}]{component} loaded[/{color}]"
+    ERROR = "[{color}]Error: {message}[/{color}]"
+    COMMAND = "[{color}]{command}[/{color}]"
+
+class Command:
+    def __init__(self, name: str, slug: str, description: str, help_message: str) -> None:
+        self.name = name
+        self.slug = slug
+        self.description = description
+        self.help_message = help_message
+
+def create_command_table(commands: List[Command]) -> Table:
+    table = Table(show_header=True, header_style="bold magenta")
+    table.add_column("Command", style="cyan")
+    table.add_column("Slug", style="green")
+    table.add_column("Description", style="blue")
+    table.add_column("Help", style="yellow")
+    
+    for command in commands:
+        table.add_row(command.name, command.slug, command.description, command.help_message)
+    
+    return table
+
+CLI_COMMANDS_INDEX = [
     Command("help", "help", "List available commands", "help"),
     Command("use", "use", "Load a module", "use [module_name]"),
     Command("search", "search", "Search for modules", "search [keyword]"),
     Command("exit", "exit", "Exit the REPL", "exit")
 ]
 
-table = Table(show_header=True, header_style="bold magenta")
-table.add_column("Command", style="cyan")
-table.add_column("Slug", style="green")
-table.add_column("Description", style="blue")
-table.add_column("Help", style="yellow")
+class Messages:
+    class General:
+        STARTING_UP = f"[{Colors.STANDARD}]Starting up {Constants.APP_NAME} v{Constants.VERSION}[/{Colors.STANDARD}]"
+        STARTED = f"[{Colors.SUCCESS}]Started {Constants.APP_NAME} v{Constants.VERSION}[/{Colors.SUCCESS}]"
+        WELCOME = f"[{Colors.STANDARD}]Welcome to {Constants.APP_NAME} v{Constants.VERSION}[/{Colors.STANDARD}]"
+        LOADING = MessageTemplates.LOADING.format(color=Colors.INFO, component=f"{Constants.APP_NAME} services")
+        EXITING = f"[{Colors.STANDARD}]Exiting {Constants.APP_NAME} v{Constants.VERSION}[/{Colors.STANDARD}]"
 
-for command in CLI_COMMANDS_INDEX:
-    table.add_row(command.command_name, command.command, command.command_description, command.help_message)
+    class REPL:
+        PROMPT = f"[{Colors.PROMPT}]>>>[/{Colors.PROMPT}]"
+        HELP = Panel(Text("Type 'help' for a list of commands", style="italic"), title="Help")
+        UNKNOWN_COMMAND = Panel(Text("Unknown command! Type 'help' for a list of commands", style=Colors.ERROR), title="Error")
+        OFFER_EXIT = Text("Type 'exit' to exit the REPL", style="bold")
+        EXITING = Panel(Text(f"Exiting {Constants.APP_NAME} REPL!\n\nThank you for using {Constants.APP_NAME}", style=Colors.ERROR), title="Goodbye")
+        STARTING = Text(f"Starting {Constants.APP_NAME} REPL", style=Colors.INFO)
+        STARTED = Text(f"{Constants.APP_NAME} REPL started", style=Colors.SUCCESS)
 
-AVAILABLE_COMMANDS_MESSAGE: Table = console.print(Panel.fit(table, title="Available Commands"))
-STARTING_UP_MESSAGE: str = f"[{STANDARD_RICH_MESSAGING_CONFIG}]Starting up Framework v{app_settings_instance.base_settings.VERSION}[/{STANDARD_RICH_MESSAGING_CONFIG}]"
-STARTED_MESSAGE: str = f"[{SUCCESS_CONFIG}]Started Framework v{app_settings_instance.base_settings.VERSION}[/{SUCCESS_CONFIG}]"
-WELCOME_MESSAGE: str = f"[{STANDARD_RICH_MESSAGING_CONFIG}]Welcome to Framework v{app_settings_instance.base_settings.VERSION}[/{STANDARD_RICH_MESSAGING_CONFIG}]"
-LOADING_MESSAGE: str = f"[{INFO_CONFIG}]Loading Framework services...[/{INFO_CONFIG}]"
-DATABASE_LOADED_MESSAGE: str = f"[{INFO_CONFIG}]Database loaded[/{INFO_CONFIG}]"
-CACHE_LOADED_MESSAGE: str = f"[{SUCCESS_CONFIG}]Cache loaded[/{SUCCESS_CONFIG}]"
-TASK_QUEUE_LOADED_MESSAGE: str = f"[{SUCCESS_CONFIG}]Task queue loaded[/{SUCCESS_CONFIG}]"
-LOGGING_LOADED_MESSAGE: str = f"[{SUCCESS_CONFIG}]Logging loaded[/{SUCCESS_CONFIG}]"
+    class Module:
+        SEARCHING = MessageTemplates.LOADING.format(color=Colors.STANDARD, component="modules")
+        NOT_FOUND = Text("Module not found!", style=Colors.ERROR)
+        LOADED = Text("Module loaded", style=Colors.SUCCESS)
+        UNLOADED = Text("Module unloaded", style=Colors.SUCCESS)
+        RELOADED = Text("Module reloaded", style=Colors.SUCCESS)
+        USAGE = Text("Usage: use [module_name]", style="bold")
+        ALREADY_LOADED = Text("Module already loaded", style=Colors.WARNING)
+        OPTIONS = Text("Options", style="bold underline")
 
-## Console messages
-## REPL STRINGS
-PROMPT_MESSAGE_COLOR: str = "blue bold"
-PROMPT_MESSAGE: str = f"[{PROMPT_MESSAGE_COLOR}]>>>[/{PROMPT_MESSAGE_COLOR}]"
+    class Database:
+        LOADED = MessageTemplates.LOADED.format(color=Colors.SUCCESS, component="Database")
+        CONNECTING = MessageTemplates.LOADING.format(color=Colors.INFO, component="Database connection")
+        CONNECTION_SUCCESS = Text("Database connection successful", style=Colors.SUCCESS)
+        CONNECTION_FAILURE = Text("Database connection failed", style=Colors.ERROR)
+        CHECKING_EXISTS = Text("Checking if database exists...", style=Colors.INFO)
 
+        class SurrealDB:
+            WEBSOCKET_LOADING = MessageTemplates.LOADING.format(color=Colors.INFO, component="SurrealDB Websocket")
+            HTTP_LOADING = MessageTemplates.LOADING.format(color=Colors.INFO, component="SurrealDB HTTP")
+            SSL_STATUS = lambda using_ssl: Text(f"SurrealDB is {'using' if using_ssl else 'not using'} SSL", style=Colors.INFO)
+            CONNECTION_SUCCESS = lambda protocol, using_ssl: Text(f"SurrealDB {protocol} connection successful" + (f" using SSL" if using_ssl else ""), style=Colors.SUCCESS)
+            SSL_ERROR = Text("Error with SSL", style=Colors.ERROR)
 
+    class Logging:
+        INITIALIZED = Text("Logging initialized", style=Colors.SUCCESS)
+        ERROR = Text("Logging error", style=Colors.ERROR)
+        WARNING = Text("Logging warning", style=Colors.WARNING)
+        INFO = Text("Logging info", style=Colors.INFO)
+        DEBUG = Text("Logging debug", style=Colors.INFO)
+        CRITICAL = Text("Logging critical", style=Colors.ERROR)
+        FATAL = Text("Logging fatal", style=Colors.ERROR)
+        SUCCESS = Text("Logging success", style=Colors.SUCCESS)
+        FAILURE = Text("Logging failure", style=Colors.ERROR)
 
-HELP_COMMAND_HANDLER_MESSAGE: str = f"[bold blue]Available commands[/bold blue]:\n\n{CLI_COMMANDS_INDEX}\n\n"
-
-## REPL messages
-OFFER_EXIT_COMMAND_MESSAGE: str = "[bold]Type 'exit' to exit the REPL[/bold]"
-EXITING_REPL_MESSAGE: str = "[bold red]Exiting REPL![/bold red]\n\nThank you for using Framework"
-
-## Starting repl
-STARTING_REPL_MESSAGE: str = f"[bold blue]Starting {APP_NAME} REPL[/bold blue]"
-STARTED_REPL_MESSAGE: str = f"[bold blue]{APP_NAME} REPL started[/bold blue]"
-
-REPL_HELP_MESSAGE: str = f"help: {CLI_COMMANDS_INDEX}"
-
-
-# HELP messages
-SHORT_VERSION_REPL_HELP_MESSAGE: str = f"[bold blue]Available commands:[/bold blue] [green]help[/green]\n\n[green]use [module_name][/green]\n\n[green]search[/green]" 
-UNKNOWN_COMMAND_IN_REPL_MESSAGE:str = "[bold red]Unknown Command![/bold red] [blue]Type[/blue] '[green]help[/green]' [blue]for a list of commands[/blue]"
-
-
-
-## Module messages
-SEARCHING_MODULES_MESSAGE: str = f"[{STANDARD_RICH_MESSAGING_CONFIG}]Searching for modules...[/{STANDARD_RICH_MESSAGING_CONFIG}]"
-MODULE_NOT_FOUND_MESSAGE: str = "[bold red]Module not found![/bold red]"
-MODULE_LOADED_MESSAGE: str = "[bold]Module loaded[/bold]"
-MODULE_UNLOADED_MESSAGE: str = "[bold]Module unloaded[/bold]"
-MODULE_RELOADED_MESSAGE: str = "[bold]Module reloaded[/bold]"
-MODULE_USAGE_MESSAGE: str = "[bold]Usage: use [module_name][/bold]"
-MODULE_ALREADY_LOADED_MESSAGE: str = "[bold]Module already loaded[/bold]"
-OPTIONS_MESSAGE: str = "[bold]Options[/bold]"
-
-### Social Engineering messages
-
-#### Phishing messages
-PHISHING_MODULES: str = "[bold]Phishing Modules[/bold]"
-
-
-# Payloads Module messages
-
-## Windows Payload Module messages
-WINDOWS_PAYLOADS_MODULE_MESSAGE: str = "[bold]Windows Payloads Module[/bold]"
-WINDOWS_PAYLOADS_LOADED_MESSAGE: str = "[bold]Windows Payloads loaded[/bold]"
-WINDOWS_PAYLOADS_EXECUTING_MESSAGE: str = "[bold]Executing Windows Payload[/bold]"
-WINDOWS_PAYLOADS_EXECUTED_MESSAGE: str = "[bold]Windows Payload executed[/bold]"
-WINDOWS_PAYLOADS_EXECUTION_FAILED_MESSAGE: str = "[bold red]Windows Payload execution failed[/bold red]"
-WINDOWS_PAYLOADS_HELP_MESSAGE: str = "[bold]Windows Payloads help[/bold]"
-WINDOWS_PAYLOADS_HELP_EXECUTION_MESSAGE: str = "[bold]Windows Payloads help executed[/bold]"
-
-# Database messages
-DATABASE_CONNECTION_SUCCESS_MESSAGE: str = "[bold]Database connection successful[/bold]"
-DATABASE_CONNECTION_FAILURE_MESSAGE: str = "[bold red]Database connection failed[/bold red]"
-DATABASE_CONNECTION_SUCCESS_MESSAGE: str = "[bold]Database connection successful[/bold]"
-
-CHECKING_IF_DATABASE_EXISTS_MESSAGE: str = "[bold]Checking if database exists...[/bold]"
-
-## SurrealDB messages websocket
-LOADING_SURREALDB_WEBSOCKET_MESSAGE: str = "[bold]Loading SurrealDB Websocket...[/bold]"
-SURREAL_DB_IS_NOT_USING_SSL_FOR_WEBSOCKET_MESSAGE: str = "[bold]SurrealDB is not using SSL for websocket[/bold]"
-SURREAL_DB_IS_USING_SSL_FOR_WEBSOCKET_MESSAGE: str = "[bold]SurrealDB is using SSL for websocket[/bold]"
-SURREAL_DB_WEBSOCKET_CONNECTION_SUCCESS_MESSAGE: str = "[bold]SurrealDB websocket connection successful[/bold]"
-SURREAL_DB_WEBSOCKET_CONNECTION_USING_SSL_MESSAGE: str = "[bold]SurrealDB websocket connection using SSL[/bold]"
-SURREAL_DB_WEBSOCKET_CONNECTION_NOT_USING_SSL_MESSAGE: str = "[bold]SurrealDB websocket connection not using SSL[/bold]"
-SURREAL_DB_WEBSOCKET_ERROR_WITH_SSL_MESSAGE: str = "[bold red]Error with SSL[/bold red]"
-## SurrealDB messages http
-LOADING_SURREALDB_HTTP_MESSAGE: str = "[bold]Loading SurrealDB HTTP...[/bold]"
-SURREALDB_HTTP_CONNECTION_SUCCESS_MESSAGE: str = "[bold]SurrealDB HTTP connection successful[/bold]"
-SURREALDB_HTTP_CONNECTION_USING_SSL_MESSAGE: str = "[bold]SurrealDB HTTP connection using SSL[/bold]"
-SURREALDB_HTTP_CONNECTION_NOT_USING_SSL_MESSAGE: str = "[bold]SurrealDB HTTP connection not using SSL[/bold]"
-SURREAL_DB_HTTP_ERROR_WITH_SSL_MESSAGE: str = "[bold red]Error with SSL[/bold red]"
-SURREAL_DB_IS_NOT_USING_SSL_MESSAGE: str = "[bold]SurrealDB is not using SSL[/bold]"
-SURREAL_DB_IS_USING_SSL_MESSAGE: str = "[bold]SurrealDB is using SSL[/bold]"
-SURREAL_DB_CONNECTION_NOT_USING_SSL_MESSAGE: str = "[bold]SurrealDB connection not using SSL[/bold]"
-SURREAL_DB_ERROR_WITH_SSL_MESSAGE: str = "[bold red]Error with SSL[/bold red]"
-SURREAL_DB_HTTP_CONNECTION_NOT_USING_SSL_MESSAGE: str = "[bold]SurrealDB HTTP connection not using SSL[/bold]"
-SURREAL_DB_IS_NOT_USING_SSL_FOR_HTTP_MESSAGE: str = "[bold]SurrealDB is not using SSL for HTTP[/bold]"
-
-
-
-
-## SurrealDB Logging Messages
-LOGGING_INITIALIZED_MESSAGE: str = f"[]Logging initialized[/]"
-LOGGING_ERROR_MESSAGE: str = "[bold red]Logging error[/bold red]"
-LOGGING_WARNING_MESSAGE: str = "[bold yellow]Logging warning[/bold yellow]"
-LOGGING_INFO_MESSAGE: str = "[bold]Logging info[/bold]"
-LOGGING_DEBUG_MESSAGE: str = "[bold]Logging debug[/bold]"
-LOGGING_CRITICAL_MESSAGE: str = "[bold red]Logging critical[/bold red]"
-LOGGING_FATAL_MESSAGE: str = "[bold red]Logging fatal[/bold red]"
-LOGGING_SUCCESS_MESSAGE: str = "[bold]Logging success[/bold]"
-LOGGING_FAILURE_MESSAGE: str = "[bold red]Logging failure[/bold red]"
-
-
-EXIT_COMMAND_HANDLER_MESSAGE: str = f"[{STANDARD_RICH_MESSAGING_CONFIG}]Exiting Framework v{app_settings_instance.base_settings.VERSION}[/{STANDARD_RICH_MESSAGING_CONFIG}]"
+# Usage examples
+AVAILABLE_COMMANDS_MESSAGE = Panel(create_command_table(CLI_COMMANDS_INDEX), title="Available Commands")
+HELP_COMMAND_HANDLER_MESSAGE = Panel(create_command_table(CLI_COMMANDS_INDEX), title="Available Commands")
