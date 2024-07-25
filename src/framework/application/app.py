@@ -13,31 +13,51 @@ class SetupFramework:
 
     async def setup_database(self, console: Console) -> declarative_base:
         try:
-            engine = create_engine(self.APP_SETTINGS.database_settings.SQLITE_DATABASE_URL)
-            Base = declarative_base(bind=engine)
-            console.print(Panel(f"Created database at {self.APP_SETTINGS.database_settings.SURREAL_DB_DATABASE}", title="Database Setup"))
+            database_url = self._get_database_url()
+            database_type = self._get_database_type()
+            console.print(Panel(f"Setting up {database_type} database", title="Database Setup"))
+
+            engine = create_engine(database_url)
+            Base = declarative_base()
             return Base
         except Exception as e:
-            error_message = f"Error setting up database: {str(e)}"
+            error_message = Messages.DATABASE_SETUP_ERROR
             console.print(Panel(error_message, title="Database Error", style="bold red"))
             logging.error(error_message)
-            raise
+            raise Exception(error_message)
 
     async def setup_caching(self, console: Console) -> None:
         console.print(Panel("Setting up caching using Redis", title="Cache Setup"))
         # Implement caching setup logic here
-    
+
     async def setup_module_services(self, console: Console) -> None:
         console.print(Panel("Setting up module services", title="Module Services Setup"))
         # Implement module services setup logic here
-    
+
     async def setup_task_queue(self, console: Console) -> None:
         console.print(Panel("Setting up task queue using SAQ", title="Task Queue Setup"))
         # Implement task queue setup logic here
-    
+
     async def setup_logging(self, console: Console) -> None:
         console.print(Panel("Setting up logging", title="Logging Setup"))
         logging_level = self.APP_SETTINGS.logging_settings.LOGGING_LEVEL
         logging.basicConfig(level=logging_level)
         console.print(f"Logging level set to: {logging_level}")
-     
+
+    def _get_database_url(self) -> str:
+        if self.APP_SETTINGS.database_settings.SQLITEDatabaseSettings.SQLITE_DATABASE_URI:
+            return self.APP_SETTINGS.database_settings.SQLITEDatabaseSettings.SQLITE_DATABASE_URI
+        elif self.APP_SETTINGS.database_settings.PostgresDatabaseSettings.POSTGRES_DB_URI:
+            return self.APP_SETTINGS.database_settings.PostgresDatabaseSettings.POSTGRES_DB_URI
+        else:
+            error_message = Messages.Database.ERROR
+            raise Exception(error_message)
+
+    def _get_database_type(self) -> str:
+        if self.APP_SETTINGS.database_settings.SQLITEDatabaseSettings.SQLITE_DATABASE_URI:
+            return "SQLite"
+        elif self.APP_SETTINGS.database_settings.PostgresDatabaseSettings.POSTGRES_DB_URI:
+            return "PostgreSQL"
+        else:
+            error_message = Messages.Database.
+            raise Exception(error_message)
