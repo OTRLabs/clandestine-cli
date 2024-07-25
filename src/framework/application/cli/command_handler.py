@@ -7,6 +7,10 @@ from rich.json import JSON
 
 from .commands.search import SearchCommand
 
+from .strings.messages.en_US import *
+from .strings.messages.str_formatting import *
+
+
 class CommandHandler:
     
     async def execute_command(command, console: Console) -> None:
@@ -14,10 +18,11 @@ class CommandHandler:
         Command processing logic used to handle any command fed to the REPL
         
         parses the command and returns the appropriate response
-        
+ 
         """
         if command == "help":
-            return "Available commands: help, exit, greet [name]"
+            # Display the help message
+            console.print(HELP_COMMAND_HANDLER_MESSAGE)
         elif command.startswith("search"):
             
             console.print("Searching for: " + command[7:])
