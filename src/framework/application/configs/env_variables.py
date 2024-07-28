@@ -8,7 +8,7 @@ from enum import Enum
 
 
 class BaseSettings:
-    APP_NAME: str = "Framework"
+    APP_NAME: str = "Clandestine CLI"
     DEBUG: bool = False
     TESTING: bool = False
     VERSION: str = "0.1.0"
