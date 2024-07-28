@@ -3,6 +3,7 @@ from rich.console import Console
 from rich.progress import Progress
 from framework.application.configs.base import Config
 from framework.application.cli.strings.messages.en_US import Messages
+from framework.application.configs.env_variables import Settings
 from framework.application.cli.console_manager import ConsoleManager
 from framework.application import app
 import asyncio
@@ -26,7 +27,7 @@ async def main() -> None:
             ("setup_database", Messages.Database.LOADED),
             ("setup_caching", Messages.General.LOADING.format(component="Cache")),
             ("setup_task_queue", Messages.General.LOADING.format(component="Task Queue")),
-            ("setup_logging", Messages.Logging.INITIALIZED),
+            ("setup_logging", Settings.logging_settings.LoggingLevels.INFO),
             ("setup_module_services", Messages.General.LOADING.format(component="Module Services"))
         ]
 
