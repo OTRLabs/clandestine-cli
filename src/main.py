@@ -22,7 +22,7 @@ async def main() -> None:
 
         console.print(Messages.General.LOADING)
         
-        setup_steps: list[tuple] = [
+        setup_steps: list[tuple[str, str]] = [
             ("setup_database", Messages.Database.LOADED),
             ("setup_caching", Messages.General.LOADING.format(component="Cache")),
             ("setup_task_queue", Messages.General.LOADING.format(component="Task Queue")),
