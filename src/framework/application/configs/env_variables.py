@@ -3,9 +3,8 @@ import os
 from dotenv import load_dotenv
 from enum import Enum
 from uuid import UUID
-load_dotenv()
 from enum import Enum
-
+load_dotenv()
 
 class BaseSettings:
     APP_NAME: str = "Clandestine CLI"
