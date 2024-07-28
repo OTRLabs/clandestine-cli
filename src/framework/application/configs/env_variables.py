@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from enum import Enum
 from uuid import UUID
 load_dotenv()
+from enum import Enum
 
 
 class BaseSettings:
@@ -33,15 +34,14 @@ class ExternalWebUISettings:
         TOR_WEBUI_PORT: int = os.getenv("TOR_WEBUI_PORT", 8080)
         TOR_WEBUI_HOST: str = os.getenv("TOR_WEBUI_HOST")
 
+
 class LoggingSettings:
-    
-    class LoggingLevels(Enum, str):
-            DEBUG: str = "DEBUG"
-            INFO: str = "INFO"
-            WARNING: str = "WARNING"
-            ERROR: str = "ERROR"
-            CRITICAL: str = "CRITICAL"
-            FATAL: str = "FATAL"
+    class LoggingLevels(str, Enum):
+        DEBUG = "DEBUG"
+        INFO = "INFO"
+        WARNING = "WARNING"
+        ERROR = "ERROR"
+        CRITICAL = "CRITICAL"
 
 
 class DatabaseSettings:
@@ -81,3 +81,4 @@ class Settings:
     
     base_settings: BaseSettings = BaseSettings()
     database_settings: DatabaseSettings = DatabaseSettings()
+    logging_settings: LoggingSettings = LoggingSettings()
